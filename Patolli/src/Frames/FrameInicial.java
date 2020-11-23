@@ -5,29 +5,37 @@
  */
 package Frames;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Heriberto
  */
 public class FrameInicial extends javax.swing.JFrame {
 
+    FondoPanel fondo = new FondoPanel();
+
     /**
      * Creates new form FrameInicial
      */
     public FrameInicial() {
+ 
+       this.setContentPane(fondo);
         initComponents();
+ 
+        this.setLocationRelativeTo(this);
     }
-    
-    public void botones()
-    {
-        if(!tfCodigoP.getText().isEmpty() && !tfNickname.getText().isEmpty())
-        {
+
+    public void botones() {
+        if (!tfCodigoP.getText().isEmpty() && !tfNickname.getText().isEmpty()) {
             btBuscarP.setEnabled(true);
             btCrearP.setEnabled(true);
         }
-    
+
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,16 +46,18 @@ public class FrameInicial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btSalir = new javax.swing.JButton();
-        btBuscarP = new javax.swing.JButton();
-        btCrearP = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         tfNickname = new javax.swing.JTextField();
-        tfCodigoP = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        tfCodigoP = new javax.swing.JTextField();
+        btBuscarP = new javax.swing.JButton();
+        btCrearP = new javax.swing.JButton();
+        btSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pantalla Principal");
+        setResizable(false);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 botones6(evt);
@@ -65,13 +75,20 @@ public class FrameInicial extends javax.swing.JFrame {
             }
         });
 
-        btSalir.setText("Salir");
-        btSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSalirActionPerformed(evt);
-            }
-        });
+        jPanel2.setBackground(new java.awt.Color(82, 67, 47));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/quetzalcoatl.png"))); // NOI18N
+        jLabel1.setText("Nickname");
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/contrasena (1).png"))); // NOI18N
+        jLabel2.setText("Codigo partida");
+
+        btBuscarP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lupa.png"))); // NOI18N
         btBuscarP.setText("Buscar partida");
         btBuscarP.setEnabled(false);
         btBuscarP.addActionListener(new java.awt.event.ActionListener() {
@@ -80,6 +97,7 @@ public class FrameInicial extends javax.swing.JFrame {
             }
         });
 
+        btCrearP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/engranajes-de-configuracion.png"))); // NOI18N
         btCrearP.setText("Crear partida");
         btCrearP.setEnabled(false);
         btCrearP.addActionListener(new java.awt.event.ActionListener() {
@@ -88,52 +106,73 @@ public class FrameInicial extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Nickname");
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(btBuscarP)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                .addComponent(btCrearP)
+                .addGap(51, 51, 51))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfNickname, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfCodigoP, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfNickname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(tfCodigoP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btBuscarP)
+                    .addComponent(btCrearP))
+                .addGap(18, 18, 18))
+        );
 
-        jLabel2.setText("Codigo partida");
+        btSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Delete.png"))); // NOI18N
+        btSalir.setText("Salir");
+        btSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(223, 223, 223))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btSalir))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(198, 198, 198)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfNickname, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btBuscarP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btCrearP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(tfCodigoP))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel2)))))
-                .addContainerGap(194, Short.MAX_VALUE))
+                        .addGap(14, 14, 14)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfNickname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(9, 9, 9)
-                .addComponent(tfCodigoP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btBuscarP)
-                .addGap(18, 18, 18)
-                .addComponent(btCrearP)
-                .addGap(19, 19, 19)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(56, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
                 .addComponent(btSalir)
                 .addContainerGap())
         );
@@ -142,7 +181,10 @@ public class FrameInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed
-        System.exit(0);
+        // TODO add your handling code here:
+        FrameMenu salir = new FrameMenu();
+        this.setVisible(false);
+        salir.setVisible(true);
     }//GEN-LAST:event_btSalirActionPerformed
 
     private void botones5(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botones5
@@ -167,14 +209,14 @@ public class FrameInicial extends javax.swing.JFrame {
 
     private void btCrearPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCrearPActionPerformed
         // TODO add your handling code here:
-        FrameCrearPartida salir=new FrameCrearPartida();
+        FrameCrearPartida salir = new FrameCrearPartida();
         this.setVisible(false);
         salir.setVisible(true);
     }//GEN-LAST:event_btCrearPActionPerformed
 
     private void btBuscarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarPActionPerformed
         // TODO add your handling code here:
-        FramePartida salir=new FramePartida();
+        FramePartida salir = new FramePartida();
         this.setVisible(false);
         salir.setVisible(true);
     }//GEN-LAST:event_btBuscarPActionPerformed
@@ -220,7 +262,20 @@ public class FrameInicial extends javax.swing.JFrame {
     private javax.swing.JButton btSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField tfCodigoP;
     private javax.swing.JTextField tfNickname;
     // End of variables declaration//GEN-END:variables
+
+    class FondoPanel extends JPanel {
+
+        private Image imagen;
+
+        public void paint(Graphics g) {
+            imagen = new ImageIcon(getClass().getResource("/imagenes/Aztecas4.jpg")).getImage();
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+            setOpaque(false);
+            super.paint(g);
+        }
+    }
 }
