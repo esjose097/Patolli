@@ -21,12 +21,12 @@ public class FrameInicial extends javax.swing.JFrame {
     /**
      * Creates new form FrameInicial
      */
-    public FrameInicial() {        
-        initComponents();
+    public FrameInicial() {               
         this.setContentPane(fondo);
+        initComponents();
         this.setLocationRelativeTo(this);
-        this.btCrearP.setEnabled(true);
-        this.btBuscarP.setEnabled(true);
+        this.btCrearP.setEnabled(false);
+        this.btBuscarP.setEnabled(false);
     }
 
     /**
@@ -188,10 +188,10 @@ public class FrameInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed
-        // TODO add your handling code here:
-//        FrameMenu salir = new FrameMenu();
-//        this.setVisible(false);
-//        salir.setVisible(true);
+        
+//        FrameMenu panel = new FrameMenu();
+//        panel.setVisible(true);
+//        this.dispose();
     }//GEN-LAST:event_btSalirActionPerformed
 
     private void botones5(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botones5
@@ -220,34 +220,29 @@ public class FrameInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btBuscarPActionPerformed
 
     private void tfNicknameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNicknameKeyTyped
-        char k = evt.getKeyChar();
-        if(k < 'a' || k > 'z')
-        {
-            evt.consume();            
-        }
     }//GEN-LAST:event_tfNicknameKeyTyped
 
     private void tfNicknameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNicknameKeyPressed
         if(evt.getKeyCode() == evt.VK_ENTER && this.compararCampos() == 1)
         {            
-            this.btCrearP.setEnabled(false);
+            this.btCrearP.setEnabled(true);
         }
         else if(evt.getKeyCode() == evt.VK_ENTER && this.compararCampos() == 2)
         {
-            this.btBuscarP.setEnabled(false);
-            this.btCrearP.setEnabled(false);
+            this.btBuscarP.setEnabled(true);
+            this.btCrearP.setEnabled(true);
         }
     }//GEN-LAST:event_tfNicknameKeyPressed
 
     private void tfCodigoPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCodigoPKeyPressed
         if(evt.getKeyCode() == evt.VK_ENTER && this.compararCampos() == 1)
         {            
-            this.btCrearP.setEnabled(false);
+            this.btCrearP.setEnabled(true);
         }
         else if(evt.getKeyCode() == evt.VK_ENTER && this.compararCampos() == 2)
         {
-            this.btBuscarP.setEnabled(false);
-            this.btCrearP.setEnabled(false);
+            this.btBuscarP.setEnabled(true);
+            this.btCrearP.setEnabled(true);
         }
     }//GEN-LAST:event_tfCodigoPKeyPressed
 
@@ -316,9 +311,7 @@ public class FrameInicial extends javax.swing.JFrame {
 
 /*Metodo que se encarga de pintar las lineas del fondo.*/
     class FondoPanel extends JPanel {
-
         private Image imagen;
-
         public void paint(Graphics g) 
         {
             imagen = new ImageIcon(getClass().getResource("/imagenes/Aztecas4.jpg")).getImage();
