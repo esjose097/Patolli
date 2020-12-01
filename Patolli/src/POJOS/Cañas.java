@@ -7,7 +7,7 @@ package POJOS;
 
 /**
  *
- * @author Heriberto
+ * @author Equipo 4
  */
 public class Cañas {
     

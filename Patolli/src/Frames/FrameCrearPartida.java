@@ -75,7 +75,7 @@ public class FrameCrearPartida extends javax.swing.JFrame {
         {
             return true;
         }      
-    }        
+    }    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -284,9 +284,9 @@ public class FrameCrearPartida extends javax.swing.JFrame {
 
     private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed
         // TODO add your handling code here:
-        FrameInicial salir=new FrameInicial();
-        this.setVisible(false);
-        salir.setVisible(true);
+        FrameInicial panel = new FrameInicial();        
+        panel.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btSalirActionPerformed
 
     private void apuesta(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_apuesta
