@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Heriberto
+ * @author Equipo 4
  */
 public class FrameInicial extends javax.swing.JFrame {
 
@@ -21,20 +21,12 @@ public class FrameInicial extends javax.swing.JFrame {
     /**
      * Creates new form FrameInicial
      */
-    public FrameInicial() {
- 
-       this.setContentPane(fondo);
+    public FrameInicial() {        
         initComponents();
- 
+        this.setContentPane(fondo);
         this.setLocationRelativeTo(this);
-    }
-
-    public void botones() {
-        if (!tfCodigoP.getText().isEmpty() && !tfNickname.getText().isEmpty()) {
-            btBuscarP.setEnabled(true);
-            btCrearP.setEnabled(true);
-        }
-
+        this.btCrearP.setEnabled(true);
+        this.btBuscarP.setEnabled(true);
     }
 
     /**
@@ -78,6 +70,15 @@ public class FrameInicial extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(82, 67, 47));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        tfNickname.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfNicknameKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfNicknameKeyTyped(evt);
+            }
+        });
+
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/quetzalcoatl.png"))); // NOI18N
@@ -87,6 +88,12 @@ public class FrameInicial extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/contrasena (1).png"))); // NOI18N
         jLabel2.setText("Codigo partida");
+
+        tfCodigoP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfCodigoPKeyPressed(evt);
+            }
+        });
 
         btBuscarP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lupa.png"))); // NOI18N
         btBuscarP.setText("Buscar partida");
@@ -119,8 +126,8 @@ public class FrameInicial extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(90, 90, 90)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tfNickname, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,29 +189,21 @@ public class FrameInicial extends javax.swing.JFrame {
 
     private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed
         // TODO add your handling code here:
-        FrameMenu salir = new FrameMenu();
-        this.setVisible(false);
-        salir.setVisible(true);
+//        FrameMenu salir = new FrameMenu();
+//        this.setVisible(false);
+//        salir.setVisible(true);
     }//GEN-LAST:event_btSalirActionPerformed
 
     private void botones5(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botones5
-        // TODO add your handling code here:
-        botones();
     }//GEN-LAST:event_botones5
 
     private void botones6(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botones6
-        // TODO add your handling code here:
-        botones();
     }//GEN-LAST:event_botones6
 
     private void botones7(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botones7
-        // TODO add your handling code here:
-        botones();
     }//GEN-LAST:event_botones7
 
     private void botones9(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botones9
-        // TODO add your handling code here:
-        botones();
     }//GEN-LAST:event_botones9
 
     private void btCrearPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCrearPActionPerformed
@@ -215,11 +214,42 @@ public class FrameInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btCrearPActionPerformed
 
     private void btBuscarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarPActionPerformed
-        // TODO add your handling code here:
         FramePartida salir = new FramePartida();
         this.setVisible(false);
         salir.setVisible(true);
     }//GEN-LAST:event_btBuscarPActionPerformed
+
+    private void tfNicknameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNicknameKeyTyped
+        char k = evt.getKeyChar();
+        if(k < 'a' || k > 'z')
+        {
+            evt.consume();            
+        }
+    }//GEN-LAST:event_tfNicknameKeyTyped
+
+    private void tfNicknameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNicknameKeyPressed
+        if(evt.getKeyCode() == evt.VK_ENTER && this.compararCampos() == 1)
+        {            
+            this.btCrearP.setEnabled(false);
+        }
+        else if(evt.getKeyCode() == evt.VK_ENTER && this.compararCampos() == 2)
+        {
+            this.btBuscarP.setEnabled(false);
+            this.btCrearP.setEnabled(false);
+        }
+    }//GEN-LAST:event_tfNicknameKeyPressed
+
+    private void tfCodigoPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCodigoPKeyPressed
+        if(evt.getKeyCode() == evt.VK_ENTER && this.compararCampos() == 1)
+        {            
+            this.btCrearP.setEnabled(false);
+        }
+        else if(evt.getKeyCode() == evt.VK_ENTER && this.compararCampos() == 2)
+        {
+            this.btBuscarP.setEnabled(false);
+            this.btCrearP.setEnabled(false);
+        }
+    }//GEN-LAST:event_tfCodigoPKeyPressed
 
     /**
      * @param args the command line arguments
@@ -255,7 +285,24 @@ public class FrameInicial extends javax.swing.JFrame {
             }
         });
     }
-
+    
+/*Aquí empiezan los métodos que utilizará este frame*/
+    
+    public int compararCampos(){
+    if(this.tfCodigoP.getText().isEmpty() == true && this.tfNickname.getText().isEmpty() == false)
+        {            
+            return 1;
+        }    
+    else if(this.tfNickname.getText().isEmpty() == false && this.tfCodigoP.getText().isEmpty() == false)
+        {
+            return 2;
+        }
+    else
+        {
+            return -1;
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btBuscarP;
     private javax.swing.JButton btCrearP;
@@ -267,11 +314,13 @@ public class FrameInicial extends javax.swing.JFrame {
     private javax.swing.JTextField tfNickname;
     // End of variables declaration//GEN-END:variables
 
+/*Metodo que se encarga de pintar las lineas del fondo.*/
     class FondoPanel extends JPanel {
 
         private Image imagen;
 
-        public void paint(Graphics g) {
+        public void paint(Graphics g) 
+        {
             imagen = new ImageIcon(getClass().getResource("/imagenes/Aztecas4.jpg")).getImage();
             g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
             setOpaque(false);

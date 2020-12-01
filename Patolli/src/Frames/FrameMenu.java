@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Heriberto
+ * @author Equipo 4
  */
 public class FrameMenu extends javax.swing.JFrame {
 FondoPanel fondo = new FondoPanel();
@@ -45,6 +45,7 @@ FondoPanel fondo = new FondoPanel();
         btSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu");
         setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(82, 67, 47));
@@ -173,15 +174,15 @@ FondoPanel fondo = new FondoPanel();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
+        System.exit(0);
     }//GEN-LAST:event_btSalirActionPerformed
 
     private void btJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btJugarActionPerformed
-        // TODO add your handling code here:
+
         FrameInicial entrar= new FrameInicial();
         this.setVisible(false);
         entrar.setVisible(true);
+        
     }//GEN-LAST:event_btJugarActionPerformed
 
     /**
