@@ -26,7 +26,7 @@ public class FrameCrearPartida extends javax.swing.JFrame {
         this.setLocationRelativeTo(this);
     }
     
-    public void comprobarApuesta()
+    private int comprobarApuesta()
     {
         if(rbApuestaV.isSelected() == true)
         {
@@ -34,37 +34,47 @@ public class FrameCrearPartida extends javax.swing.JFrame {
             tfApuestaMax.setEnabled(true);
             tfApuestaMin.setEnabled(true);
             rbApuestaF.setSelected(false);
+            return 1;
         }
         else if(rbApuestaF.isSelected() == true)
         {            
             tfApuestaF.setEnabled(true);
             tfApuestaMax.setEnabled(false);
             tfApuestaMin.setEnabled(false);
-            rbApuestaV.setSelected(false);            
+            rbApuestaV.setSelected(false);
+            return 2;
+        }
+        else
+        {
+            return -1;
         }
     }
     
     private boolean comprobarCampos(){
-
-        if(rbApuestaV.isSelected() == true && this.rbApuestaV.isSelected() == false
-                && this.tfApuestaF.getText().equalsIgnoreCase(""))
+        if (this.comprobarApuesta() == 1)
         {
-            JOptionPane.showMessageDialog(this, "El campo de texto de la apuesta fija esta vacío. "
-            + "Porfavor segúrese de seleccionar una cantidad apropiada.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
+            if(this.tfApuestaMax.getText().equals("") || this.tfApuestaMin.getText().equals(""))
+            {
+                JOptionPane.showMessageDialog(this, "Alguno de los campos de apuesta máxima o"
+                + " apuesta mínima esta vacío. Por favor verifique sus datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+            else{return true;}
         }
-        else if(this.rbApuestaV.isSelected() == false && this.tfApuestaMax.getText().equalsIgnoreCase("") ||
-                this.tfApuestaMin.getText().equalsIgnoreCase(""))
+        else if(this.comprobarApuesta() == 2)
         {
-            JOptionPane.showMessageDialog(this, "Alguno de los campos de texto de apuesta mínima o"
-                    + " máxima esta vacío. "
-            + "Porfavor segúrese de haber llenado una cantidad apropiada.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
+            if(this.tfApuestaF.getText().equals(""))
+            {
+                JOptionPane.showMessageDialog(this, "El campo de apuesta fija"
+                + " esta vacío. Por favor verifique sus datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+            else{return true;}
         }
         else
         {
-        return true;
-        }
+            return true;
+        }      
     }        
 
     /**
