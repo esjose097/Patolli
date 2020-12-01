@@ -188,10 +188,9 @@ public class FrameInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed
-        
-//        FrameMenu panel = new FrameMenu();
-//        panel.setVisible(true);
-//        this.dispose();
+        FrameMenu panel = new FrameMenu();
+        panel.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btSalirActionPerformed
 
     private void botones5(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botones5
@@ -207,7 +206,6 @@ public class FrameInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_botones9
 
     private void btCrearPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCrearPActionPerformed
-        // TODO add your handling code here:
         FrameCrearPartida salir = new FrameCrearPartida();
         this.setVisible(false);
         salir.setVisible(true);
@@ -283,7 +281,7 @@ public class FrameInicial extends javax.swing.JFrame {
     
 /*Aquí empiezan los métodos que utilizará este frame*/
     
-    public int compararCampos(){
+    private int compararCampos(){
     if(this.tfCodigoP.getText().isEmpty() == true && this.tfNickname.getText().isEmpty() == false)
         {            
             return 1;
