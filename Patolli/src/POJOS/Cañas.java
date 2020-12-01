@@ -11,4 +11,9 @@ package POJOS;
  */
 public class Cañas {
     
+    public Cañas(){}
+    
+    private int tirarCania(){
+        return 0;
+    }
 }

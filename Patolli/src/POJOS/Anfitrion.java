@@ -11,13 +11,24 @@ import java.util.ArrayList;
  *
  * @author Equipo 4
  */
-public class Invitado extends Usuario{
+public class Anfitrion extends Usuario{
+    private Partida partida;
 
-    public Invitado() {
+    public Anfitrion() {
+        super();
     }
 
-    public Invitado(String nombre, ArrayList<Ficha> fichas, int fondos, Cañas cañas) {
+    public Anfitrion(Partida partida, String nombre, ArrayList<Ficha> fichas, int fondos, Cañas cañas) {
         super(nombre, fichas, fondos, cañas);
+        this.partida = partida;
+    }
+
+    public Partida getPartida() {
+        return partida;
+    }
+
+    public void setPartida(Partida partida) {
+        this.partida = partida;
     }
 
     public String getNombre() {
@@ -58,5 +69,8 @@ public class Invitado extends Usuario{
 
     public void setCañas(Cañas cañas) {
         this.cañas = cañas;
-    }            
+    }
+    
+    
+    
 }

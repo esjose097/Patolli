@@ -10,22 +10,21 @@ import java.util.ArrayList;
 import POJOS.Ficha;
 /**
  *
- * @author Heriberto
+ * @author Equipo 4
  */
 public class Usuario {
-    private String nombre;
-    private ArrayList<Ficha> fichas; 
-    private int puntos;
-    private int fondos;
-    private Cañas cañas;
+    protected String nombre;
+    protected ArrayList<Ficha> fichas; 
+    protected int puntos;
+    protected int fondos;
+    protected Cañas cañas;
 
-    public Usuario() {
-    }
+    public Usuario() {}
 
-    public Usuario(String nombre, ArrayList<Ficha> fichas, int puntos, int fondos, Cañas cañas) {
+    public Usuario(String nombre, ArrayList<Ficha> fichas, int fondos, Cañas cañas) {
         this.nombre = nombre;
         this.fichas = fichas;
-        this.puntos = puntos;
+        this.puntos = 0;
         this.fondos = fondos;
         this.cañas = cañas;
     }
@@ -81,7 +80,5 @@ public class Usuario {
 
     public void setCañas(Cañas cañas) {
         this.cañas = cañas;
-    }
-    
-    
+    }        
 }
