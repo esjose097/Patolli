@@ -1,7 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Esta clase fue creada con el unico objetivo de hacer pruebas de java 2D.
  */
 package Pruebas;
 
@@ -127,6 +125,18 @@ public class frmPrueba extends javax.swing.JFrame {
 //        for(int i = 0; i < 11; i++)
 //        {
 //            g.drawLine(x, y, x, y+80);
+//            if(i == 3)
+//            {
+//                g.setColor(Color.red);
+//                g.fillRect(x, y+40, 40, 40);
+//                g.setColor(Color.BLACK);
+//            }
+//            else if(i == 6)
+//            {
+//                g.setColor(Color.red);
+//                g.fillRect(x, y, 40, 40);
+//                g.setColor(Color.BLACK);                
+//            }
 //            x = x + 40;
 //        }
 //        g.drawLine(190, 390, 590, 390);
@@ -137,7 +147,18 @@ public class frmPrueba extends javax.swing.JFrame {
 //        for(int i = 0; i < 11; i++)
 //        {            
 //            g.drawLine(x, y, x+80, y);
-//            g.setColor(Color.BLACK);
+//            if(i == 3)
+//            {
+//                g.setColor(Color.red);
+//                g.fillRect(x, y, 40, 40);
+//                g.setColor(Color.BLACK);
+//            }
+//            if(i == 6)
+//            {
+//                g.setColor(Color.red);
+//                g.fillRect(x+40, y, 40, 40);
+//                g.setColor(Color.BLACK);
+//            }            
 //            y = y + 40;
 //        }
 //        g.drawLine(390, 190, 390, 590);    
@@ -151,6 +172,18 @@ public class frmPrueba extends javax.swing.JFrame {
 //        for(int i = 0; i < 12; i++)
 //        {
 //            g.drawLine(x, y, x, y+80);
+//            if(i == 4)
+//            {
+//                g.setColor(Color.red);
+//                g.fillRect(x, y+40, 40, 40);
+//                g.setColor(Color.BLACK);
+//            }
+//            else if(i == 7)
+//            {
+//                g.setColor(Color.red);
+//                g.fillRect(x, y, 40, 40);
+//                g.setColor(Color.BLACK);                
+//            }            
 //            x = x + 40;
 //        }
 //        g.drawLine(150, 390, 630, 390);
@@ -161,7 +194,18 @@ public class frmPrueba extends javax.swing.JFrame {
 //        for(int i = 0; i < 12; i++)
 //        {            
 //            g.drawLine(x, y, x+80, y);
-//            g.setColor(Color.BLACK);
+//            if(i == 4)
+//            {
+//                g.setColor(Color.red);
+//                g.fillRect(x, y, 40, 40);
+//                g.setColor(Color.BLACK);
+//            }
+//            if(i == 7)
+//            {
+//                g.setColor(Color.red);
+//                g.fillRect(x+40, y, 40, 40);
+//                g.setColor(Color.BLACK);
+//            }                        
 //            y = y + 40;
 //        }
 //        g.drawLine(390, 150, 390, 630);   
@@ -174,6 +218,18 @@ public class frmPrueba extends javax.swing.JFrame {
 //        for(int i = 0; i < 14; i++)
 //        {
 //            g.drawLine(x, y, x, y+80);
+//            if(i == 5)
+//            {
+//                g.setColor(Color.red);
+//                g.fillRect(x, y+40, 40, 40);
+//                g.setColor(Color.BLACK);
+//            }
+//            else if(i == 8)
+//            {
+//                g.setColor(Color.red);
+//                g.fillRect(x, y, 40, 40);
+//                g.setColor(Color.BLACK);                
+//            }                        
 //            x = x + 40;
 //        }
 //        g.drawLine(110, 390, 670, 390);
@@ -184,33 +240,67 @@ public class frmPrueba extends javax.swing.JFrame {
 //        for(int i = 0; i < 14; i++)
 //        {            
 //            g.drawLine(x, y, x+80, y);
-//            g.setColor(Color.BLACK);
+//            if(i == 5)
+//            {
+//                g.setColor(Color.red);
+//                g.fillRect(x, y, 40, 40);
+//                g.setColor(Color.BLACK);
+//            }
+//            if(i == 8)
+//            {
+//                g.setColor(Color.red);
+//                g.fillRect(x+40, y, 40, 40);
+//                g.setColor(Color.BLACK);
+//            }                                    
 //            y = y + 40;
 //        }
 //        g.drawLine(390, 110, 390, 670);
 
 //      Tablero de 14 casillas
-        int x = 0;
-        int y = 0;
-        x = 70; y = 350;
-        g.drawRect(x, y, 640, 80);
-        for(int i = 0; i < 16; i++)
-        {
-            g.drawLine(x, y, x, y+80);
-            x = x + 40;
-        }
-        g.drawLine(70, 390, 710, 390);
-        
-        x = 350;
-        y = 110;
-        g.drawRect(x, y, 80, 560);
-        for(int i = 0; i < 14; i++)
-        {            
-            g.drawLine(x, y, x+80, y);
-            g.setColor(Color.BLACK);
-            y = y + 40;
-        }
-        g.drawLine(390, 110, 390, 670);        
+//        int x = 0;
+//        int y = 0;
+//        x = 70; y = 350;
+//        g.drawRect(x, y, 640, 80);
+//        for(int i = 0; i < 16; i++)
+//        {
+//            g.drawLine(x, y, x, y+80);
+//            if(i == 6)
+//            {
+//                g.setColor(Color.red);
+//                g.fillRect(x, y+40, 40, 40);
+//                g.setColor(Color.BLACK);
+//            }
+//            else if(i == 9)
+//            {
+//                g.setColor(Color.red);
+//                g.fillRect(x, y, 40, 40);
+//                g.setColor(Color.BLACK);                
+//            }                                    
+//            x = x + 40;
+//        }
+//        g.drawLine(70, 390, 710, 390);
+//        
+//        x = 350;
+//        y = 70;
+//        g.drawRect(x, y, 80, 640);
+//        for(int i = 0; i < 16; i++)
+//        {            
+//            g.drawLine(x, y, x+80, y);
+//            if(i == 6)
+//            {
+//                g.setColor(Color.red);
+//                g.fillRect(x, y, 40, 40);
+//                g.setColor(Color.BLACK);
+//            }
+//            if(i == 9)
+//            {
+//                g.setColor(Color.red);
+//                g.fillRect(x+40, y, 40, 40);
+//                g.setColor(Color.BLACK);
+//            }                                    
+//            y = y + 40;
+//        }
+//        g.drawLine(390, 70, 390, 710);        
         g.setColor(Color.red);
         if(this.posicionCasilla <= 220 )
         {

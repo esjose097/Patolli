@@ -1,9 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Esta clase representa un objeto de tipo cañas.
  */
 package POJOS;
+
+import java.util.Random;
 
 /**
  *
@@ -12,8 +12,14 @@ package POJOS;
 public class Cañas {
     
     public Cañas(){}
-    
+/*
+ Método encargado de devolver un int alazar para simular la tirada de cañas
+ utilizando un objeto de tipo Random.
+*/    
     private int tirarCania(){
-        return 0;
+        Random r = new Random();
+        int tirada;
+        tirada = (r.nextInt(6)+1);        
+        return tirada;
     }
 }

@@ -1,7 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Esta clase padre se encarga de representar un objeto de tipo Usuario.
  */
 package POJOS;
 
@@ -21,7 +19,7 @@ public class Usuario {
 
     public Usuario() {}
 
-    public Usuario(String nombre, ArrayList<Ficha> fichas, int fondos, Cañas cañas) {
+    public Usuario(String nombre, ArrayList<Ficha> fichas, int fondos) {
         this.nombre = nombre;
         this.fichas = fichas;
         this.puntos = 0;
@@ -29,11 +27,19 @@ public class Usuario {
         this.cañas = cañas;
     }
 
-   public boolean mover()
+    public Usuario(String nombre) {
+        this.nombre = nombre;
+        this.fichas = new ArrayList<Ficha>();
+        this.cañas = new Cañas();
+    }
+    
+    
+
+   public boolean mover(int tirada)
    {
        return true;
    }
-   public boolean apostar()
+   public boolean apostar(int apuesta)
    {
        return true;
    }

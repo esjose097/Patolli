@@ -5,8 +5,11 @@
  */
 package Frames;
 
+import POJOS.*;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.Random;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -17,66 +20,18 @@ import javax.swing.JPanel;
  */
 public class FrameCrearPartida extends javax.swing.JFrame {
   FondoPanel fondo = new FondoPanel();
+  private Anfitrion anf;
     /**
      * Creates new form FrameCrearPartida
      */
-    public FrameCrearPartida() {
+    public FrameCrearPartida(Anfitrion anf) {
         this.setContentPane(fondo);
         initComponents();
+        this.cargarComboBoxs();
         this.setLocationRelativeTo(this);
+        this.anf = anf;
     }
     
-    private int comprobarApuesta()
-    {
-        if(rbApuestaV.isSelected() == true)
-        {
-            tfApuestaF.setEnabled(false);
-            tfApuestaMax.setEnabled(true);
-            tfApuestaMin.setEnabled(true);
-            rbApuestaF.setSelected(false);
-            return 1;
-        }
-        else if(rbApuestaF.isSelected() == true)
-        {            
-            tfApuestaF.setEnabled(true);
-            tfApuestaMax.setEnabled(false);
-            tfApuestaMin.setEnabled(false);
-            rbApuestaV.setSelected(false);
-            return 2;
-        }
-        else
-        {
-            return -1;
-        }
-    }
-    
-    private boolean comprobarCampos(){
-        if (this.comprobarApuesta() == 1)
-        {
-            if(this.tfApuestaMax.getText().equals("") || this.tfApuestaMin.getText().equals(""))
-            {
-                JOptionPane.showMessageDialog(this, "Alguno de los campos de apuesta máxima o"
-                + " apuesta mínima esta vacío. Por favor verifique sus datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
-                return false;
-            }
-            else{return true;}
-        }
-        else if(this.comprobarApuesta() == 2)
-        {
-            if(this.tfApuestaF.getText().equals(""))
-            {
-                JOptionPane.showMessageDialog(this, "El campo de apuesta fija"
-                + " esta vacío. Por favor verifique sus datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
-                return false;
-            }
-            else{return true;}
-        }
-        else
-        {
-            return true;
-        }      
-    }    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -88,16 +43,16 @@ public class FrameCrearPartida extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         tfApuestaMin = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cBNumFichas = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         tfApuestaMax = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         rbApuestaF = new javax.swing.JRadioButton();
-        cbTablero = new javax.swing.JComboBox<>();
+        cBTablero = new javax.swing.JComboBox<>();
         rbApuestaV = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
-        cbJugadores = new javax.swing.JComboBox<>();
+        cBNumJug = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         tfApuestaF = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -116,8 +71,11 @@ public class FrameCrearPartida extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         tfApuestaMin.setEnabled(false);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2", "3", "4", "5", "6" }));
+        tfApuestaMin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfApuestaMinKeyTyped(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -128,11 +86,18 @@ public class FrameCrearPartida extends javax.swing.JFrame {
         jLabel1.setText("Número de fichas:");
 
         tfApuestaMax.setEnabled(false);
+        tfApuestaMax.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfApuestaMaxKeyTyped(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Tamaño tablero:");
 
+        rbApuestaF.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        rbApuestaF.setForeground(new java.awt.Color(255, 255, 255));
         rbApuestaF.setSelected(true);
         rbApuestaF.setText("Apuesta fija ");
         rbApuestaF.addActionListener(new java.awt.event.ActionListener() {
@@ -141,8 +106,8 @@ public class FrameCrearPartida extends javax.swing.JFrame {
             }
         });
 
-        cbTablero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8", "10", "12", "14" }));
-
+        rbApuestaV.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        rbApuestaV.setForeground(new java.awt.Color(255, 255, 255));
         rbApuestaV.setText("Apuesta variable ");
         rbApuestaV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,16 +119,21 @@ public class FrameCrearPartida extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Número de jugadores:");
 
-        cbJugadores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2", "3", "4" }));
-        cbJugadores.addActionListener(new java.awt.event.ActionListener() {
+        cBNumJug.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbJugadoresActionPerformed(evt);
+                cBNumJugActionPerformed(evt);
             }
         });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Apuesta fija:");
+
+        tfApuestaF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfApuestaFKeyTyped(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -200,9 +170,9 @@ public class FrameCrearPartida extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addGap(21, 21, 21)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cbTablero, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cBTablero, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cBNumFichas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cBNumJug, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -235,20 +205,20 @@ public class FrameCrearPartida extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(29, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cBNumFichas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(rbApuestaF)
                     .addComponent(rbApuestaV))
                 .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(cbTablero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cBTablero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(tfApuestaF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(cbJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cBNumJug, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(tfApuestaMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
@@ -305,61 +275,59 @@ public class FrameCrearPartida extends javax.swing.JFrame {
     }//GEN-LAST:event_rbApuestaFActionPerformed
 
     private void btCrearPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCrearPartidaActionPerformed
-        // TODO add your handling code here:
+
         if(this.comprobarCampos() == true)
         {
-        FramePartida panel = new FramePartida();
-        this.dispose();
-        panel.setVisible(true);
+            this.crearPartida();
         }
-        FramePartida.tableroT = this.cbTablero.getSelectedIndex();
     }//GEN-LAST:event_btCrearPartidaActionPerformed
 
-    private void cbJugadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbJugadoresActionPerformed
+    private void cBNumJugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cBNumJugActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbJugadoresActionPerformed
+    }//GEN-LAST:event_cBNumJugActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrameCrearPartida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrameCrearPartida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrameCrearPartida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrameCrearPartida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void tfApuestaFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfApuestaFKeyTyped
+        char c = evt.getKeyChar();
+        if(c < '0' && c > '9')
+        {
+            evt.consume();
         }
-        //</editor-fold>
+        if(this.tfApuestaF.getText().length() == 4)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfApuestaFKeyTyped
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrameCrearPartida().setVisible(true);
-            }
-        });
-    }
+    private void tfApuestaMinKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfApuestaMinKeyTyped
+        char c = evt.getKeyChar();
+        if(c < '0' && c > '9')
+        {
+            evt.consume();
+        }
+        if(this.tfApuestaMin.getText().length() == 4)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfApuestaMinKeyTyped
 
+    private void tfApuestaMaxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfApuestaMaxKeyTyped
+        char c = evt.getKeyChar();
+        if(c < '0' && c > '9')
+        {
+            evt.consume();
+        }
+        if(this.tfApuestaMax.getText().length() == 4)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfApuestaMaxKeyTyped
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCrearPartida;
     private javax.swing.JButton btSalir;
-    private javax.swing.JComboBox<String> cbJugadores;
-    private javax.swing.JComboBox<String> cbTablero;
-    public transient javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<Integer> cBNumFichas;
+    private javax.swing.JComboBox<Integer> cBNumJug;
+    private javax.swing.JComboBox<Integer> cBTablero;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -373,7 +341,183 @@ public class FrameCrearPartida extends javax.swing.JFrame {
     public static javax.swing.JTextField tfApuestaMax;
     public static javax.swing.JTextField tfApuestaMin;
     // End of variables declaration//GEN-END:variables
-class FondoPanel extends JPanel {
+
+// Aquí empiezan los métodos utilizados para el frame.
+
+// Método encargado de rellenar las comboBox.
+    private void cargarComboBoxs(){        
+        //Instanceamos modelos de comboBox
+        DefaultComboBoxModel<Integer> defaultComboBoxModelF = new DefaultComboBoxModel<>();
+        DefaultComboBoxModel<Integer> defaultComboBoxModelJ = new DefaultComboBoxModel<>();
+        DefaultComboBoxModel<Integer> defaultComboBoxModelC = new DefaultComboBoxModel<>();        
+//      Llenamos la comboBox de número de fichas.
+        defaultComboBoxModelF.addElement(2); defaultComboBoxModelF.addElement(3);
+        defaultComboBoxModelF.addElement(4); defaultComboBoxModelF.addElement(5);
+        defaultComboBoxModelF.addElement(6);
+//      Le asignamos su respectivo modelo a nuestra comboBox        
+        this.cBNumFichas.setModel(defaultComboBoxModelF);
+        //Llenamos la comboBox de número de casillas.
+        defaultComboBoxModelC.addElement(8); defaultComboBoxModelC.addElement(10);
+        defaultComboBoxModelC.addElement(12); defaultComboBoxModelC.addElement(14);
+//      Le asignamos su respectivo modelo a nuestra comboBox        
+        this.cBTablero.setModel(defaultComboBoxModelC);
+        
+        //Llenamos la comboBox de número de jugadores
+        defaultComboBoxModelJ.addElement(2); defaultComboBoxModelJ.addElement(3);
+        defaultComboBoxModelJ.addElement(4);        
+//      Le asignamos su respectivo modelo a nuestra comboBox        
+        this.cBNumJug.setModel(defaultComboBoxModelJ);        
+    }    
+    
+/* Método encargado de crear un objeto tipo partida y desplegar la pantalla 
+   Partida.
+*/
+    private void crearPartida(){
+// Intanceamos y asignamos el valor corresponiente de la comboBox a nuestros elementos.
+    int numJ = (Integer)this.cBNumJug.getSelectedItem();
+    int numT = (Integer) this.cBTablero.getSelectedItem();
+    int numF = (Integer) this.cBNumFichas.getSelectedItem();
+/* Instanceamos las apuestas en 0 debido a que aun no sabemos que tipo de apuesta 
+   Elejira el usuario.
+*/   
+    int apuestaF = 0, apuestaMax = 0, apuestaMin = 0;
+// Instanceamos un string para el código de la partida    
+    String codigo = "";
+// Verificamos el tipo de apuesta y asignamos los valores correspondientes.    
+    if(this.rbApuestaF.isSelected() == true)
+    {
+        apuestaF = Integer.parseInt(this.tfApuestaF.getText());    
+    }
+    else
+    {
+        apuestaMax = Integer.parseInt(this.tfApuestaMax.getText());
+        apuestaMin = Integer.parseInt(this.tfApuestaMin.getText());
+    }    
+/* Este pequeño ciclo for se encarga de generar el código de la partida con
+    un objeto de tipo Random.
+*/
+    for(int i = 0; i < 4; i++)
+    {
+        Random r = new Random();
+        int tirada = (r.nextInt(9) + 1);
+        codigo = codigo + tirada + "";
+    }  
+// Se instancea un objeto de tipo Tablero con su tamaño correspondiente.    
+    Tablero tablero = new Tablero(numT);
+/* Se crea un objeto de tipo partida con todos los valores que se han reunido
+    a lo largo de este método.
+*/
+    Partida partida = new Partida(codigo, tablero, apuestaMax, apuestaMin, apuestaF, numJ, numF, anf);
+/*
+    Se crea y muestra un JOptionPane con la finalidad de mostrarle al usuario
+    todos los datos que ha seleccionado para su partida.
+*/    
+    JOptionPane.showMessageDialog(this, "Los datos de su partida son:\nNúmero de fichas: "
+            + numF+"\nNúmero de jugadores: " + numJ + "\nTamaño de tablero: "
+                    + numT +" casillas por aspa\nCódigo de partida: "
+                            + codigo, 
+            "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+/* Mediante otro JOptionPane se confirma si el usuario quiere crear la partida
+   con esos vaores o no. (Aquí si pedimos disculpas profesor, pudimos haber hecho
+    esto en un solo JOptionPane, pero esta forma era mas rapida.).
+*/
+    int i = JOptionPane.showConfirmDialog(this, "¿Desea crear la partida?");
+// Se comprueba la opción que el usuario haya seleccionado.
+    if(i == 0)
+    {
+/* En caso de aceptar se crea un JFrame de pantalla partida y se le manda
+   el objeto de tipo partida que se creo anteriormente en su constructor.        
+*/
+        FramePartida panel = new FramePartida(partida);
+        panel.setVisible(true);
+        this.dispose();
+    }
+// En caso de no confirmar el la partida se llama al método "limpiarCampos".
+    else
+    {
+        this.limpiarCampos();
+    }
+    }
+// Método encargado de limpiar/Reiniciar los campos de la pantalla.    
+    private void limpiarCampos(){
+        this.tfApuestaF.setText("");
+        this.tfApuestaMax.setText("");
+        this.tfApuestaMin.setText("");
+    }
+// Método encargado de comprobar el tipo de apuesta que se esta seleccionando.    
+    private int comprobarApuesta(){
+/* Si el usuario selecciona la apuesta variable se bloquean los campos inecesarios
+   y se habilitan los campos que son necesarios para poder configurar la apuesta.
+   y regresa un 1 para confirmar esto.
+*/        
+        if(rbApuestaV.isSelected() == true)
+        {
+            tfApuestaF.setEnabled(false);
+            tfApuestaMax.setEnabled(true);
+            tfApuestaMin.setEnabled(true);
+            rbApuestaF.setSelected(false);
+            return 1;
+        }
+/* Si el usuario selecciona la apuesta fija. se bloquean los campos inecesarios
+   y se habilitan los campos que son necesarios para poder configurar la apuesta
+   y regresa un 2 para confirmar esto.
+*/                
+        else if(rbApuestaF.isSelected() == true)
+        {            
+            tfApuestaF.setEnabled(true);
+            tfApuestaMax.setEnabled(false);
+            tfApuestaMin.setEnabled(false);
+            rbApuestaV.setSelected(false);
+            return 2;
+        }
+/*
+    En caso de algun tipo de error se regresa un -1.
+*/        
+        else
+        {
+            return -1;
+        }
+    }
+// Método encargado de comprobar que los campos estan realmente validados    
+    private boolean comprobarCampos(){
+// Se comprueba el número que se retorna en el método "comprobarApuesta".
+        if (this.comprobarApuesta() == 1)
+        {
+/* Se muestra la pantalla de error correspondiente mediante un JOptionPane y devuelve un false
+    si alguno de los campos esta vacío, de lo contrario se retorna un true.
+*/
+            if(this.tfApuestaMax.getText().equals("") || this.tfApuestaMin.getText().equals(""))
+            {
+                JOptionPane.showMessageDialog(this, "Alguno de los campos de apuesta máxima o"
+                + " apuesta mínima esta vacío. Por favor verifique sus datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+            else{return true;}
+        }
+// Se comprueba el número que se retorna en el método "comprobarApuesta".        
+        else if(this.comprobarApuesta() == 2)
+        {
+/* Se muestra la pantalla de error correspondiente mediante un JOptionPane y devuelve un false
+   si alguno de los campos esta vacío, de lo contrario se retorna un true.
+*/            
+            if(this.tfApuestaF.getText().equals(""))
+            {
+                JOptionPane.showMessageDialog(this, "El campo de apuesta fija"
+                + " esta vacío. Por favor verifique sus datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+            else{return true;}
+        }
+// En caso de devolver un -1 o algo diferente se muestra un mensaje de error y se retorna un false.
+        else
+        {
+        JOptionPane.showMessageDialog(this, "A ocurrido un error inesperado, porfavor"
+        + " verifique sus datos.", "ERROR", JOptionPane.ERROR_MESSAGE);               
+            return false;
+        }      
+    }
+//Método encargado de pintar el fondo.    
+    class FondoPanel extends JPanel {
 
         private Image imagen;
 

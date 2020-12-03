@@ -1,7 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Esta clase se encarga de representar un objeto de tipo Invitado.
  */
 package POJOS;
 
@@ -14,12 +12,15 @@ import java.util.ArrayList;
 public class Invitado extends Usuario{
 
     public Invitado() {
-    }
+    }    
 
-    public Invitado(String nombre, ArrayList<Ficha> fichas, int fondos, Cañas cañas) {
-        super(nombre, fichas, fondos, cañas);
-    }
-
+    public Invitado(String nombre, ArrayList<Ficha> fichas, int fondos) {
+        super(nombre, fichas, fondos);
+    }        
+    
+    public Invitado(String nombre) {
+        super(nombre);
+    }    
     public String getNombre() {
         return nombre;
     }

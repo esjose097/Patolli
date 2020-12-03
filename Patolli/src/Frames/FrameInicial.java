@@ -5,6 +5,7 @@
  */
 package Frames;
 
+import POJOS.Anfitrion;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -28,7 +29,7 @@ public class FrameInicial extends javax.swing.JFrame {
         this.btCrearP.setEnabled(false);
         this.btBuscarP.setEnabled(false);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -93,6 +94,9 @@ public class FrameInicial extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tfCodigoPKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfCodigoPKeyTyped(evt);
+            }
         });
 
         btBuscarP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lupa.png"))); // NOI18N
@@ -129,9 +133,9 @@ public class FrameInicial extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfNickname, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfCodigoP, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tfNickname, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                    .addComponent(tfCodigoP))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -206,18 +210,20 @@ public class FrameInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_botones9
 
     private void btCrearPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCrearPActionPerformed
-        FrameCrearPartida salir = new FrameCrearPartida();
-        this.setVisible(false);
-        salir.setVisible(true);
+        this.abrirPCrearPartida();
     }//GEN-LAST:event_btCrearPActionPerformed
 
     private void btBuscarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarPActionPerformed
-        FramePartida salir = new FramePartida();
-        this.setVisible(false);
-        salir.setVisible(true);
+//        FramePartida salir = new FramePartida();
+//        this.setVisible(false);
+//        salir.setVisible(true);
     }//GEN-LAST:event_btBuscarPActionPerformed
 
     private void tfNicknameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNicknameKeyTyped
+        if(this.tfNickname.getText().length() == 15)
+        {
+            evt.consume();
+        }
     }//GEN-LAST:event_tfNicknameKeyTyped
 
     private void tfNicknameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNicknameKeyPressed
@@ -243,6 +249,19 @@ public class FrameInicial extends javax.swing.JFrame {
             this.btCrearP.setEnabled(true);
         }
     }//GEN-LAST:event_tfCodigoPKeyPressed
+
+    private void tfCodigoPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCodigoPKeyTyped
+        char k = evt.getKeyChar();
+        if(k < '0' || k > '9')
+        {
+            evt.consume();
+        }
+        if(this.tfCodigoP.getText().length() == 4)
+        {
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_tfCodigoPKeyTyped
 
     /**
      * @param args the command line arguments
@@ -280,7 +299,13 @@ public class FrameInicial extends javax.swing.JFrame {
     }
     
 /*Aquí empiezan los métodos que utilizará este frame*/
-    
+
+/*
+    Método encargado de comprobar si los campos de texto no estan vacíos.
+    y retorna un int segun el resultado. 
+    (Parece broma pero este método que pensaba que saldria en 10 min casi me toma
+    2 horas debido a que el gitHub andaba raro jajaajajajj).
+*/    
     private int compararCampos(){
     if(this.tfCodigoP.getText().isEmpty() == true && this.tfNickname.getText().isEmpty() == false)
         {            
@@ -295,6 +320,20 @@ public class FrameInicial extends javax.swing.JFrame {
             return -1;
         }
     }
+
+//Método encargado de desplegar la pantalla PCrearPartida    
+    private void abrirPCrearPartida(){        
+/* Se instancea un objeto de tipo Anfitrion utilizando el nombre que el usuario        
+   ha introducido en su respectvo campo de texto.
+*/
+        Anfitrion anf = new Anfitrion(this.tfNickname.getText());
+/* Se intancea un frame de FrameCrearPartida y se envia el objeto de tipo anfitrión
+   Intanceado anteriormente como parametro del contructor.        
+*/
+        FrameCrearPartida panel = new FrameCrearPartida(anf);
+        this.dispose();
+        panel.setVisible(true);
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btBuscarP;
@@ -307,7 +346,7 @@ public class FrameInicial extends javax.swing.JFrame {
     private javax.swing.JTextField tfNickname;
     // End of variables declaration//GEN-END:variables
 
-/*Metodo que se encarga de pintar las lineas del fondo.*/
+/*Metodo que se encarga de pintar el fondo.*/
     class FondoPanel extends JPanel {
         private Image imagen;
         public void paint(Graphics g) 

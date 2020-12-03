@@ -1,7 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Esta clase se encarga de representar un objeto de tipo Partida.
  */
 package POJOS;
 
@@ -25,7 +23,7 @@ public class Partida {
     public Partida() {
     }    
     
-    public Partida(String codigo, Tablero tablero, Integer apuesaMax, Integer apuesaMin, Integer apuesaFija, int numJugadores, int numFichas, ArrayList<Invitado> listaInvitado, Anfitrion anfitrion) {
+    public Partida(String codigo, Tablero tablero, Integer apuesaMax, Integer apuesaMin, Integer apuesaFija, int numJugadores, int numFichas, Anfitrion anfitrion) {        
         this.codigo = codigo;
         this.tablero = tablero;
         this.apuesaMax = apuesaMax;
@@ -33,7 +31,7 @@ public class Partida {
         this.apuesaFija = apuesaFija;
         this.numJugadores = numJugadores;
         this.numFichas = numFichas;
-        this.listaInvitado = listaInvitado;
+        this.listaInvitado = new ArrayList<>();
         this.anfitrion = anfitrion;
     }
 

@@ -1,7 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Esta clase se encarga de representar un objeto de tipo Anfitrión.
  */
 package POJOS;
 
@@ -18,11 +16,24 @@ public class Anfitrion extends Usuario{
         super();
     }
 
-    public Anfitrion(Partida partida, String nombre, ArrayList<Ficha> fichas, int fondos, Cañas cañas) {
-        super(nombre, fichas, fondos, cañas);
+    public Anfitrion(String nombre) {
+        super(nombre);
+    }
+
+    public Anfitrion(Partida partida) {
         this.partida = partida;
     }
 
+    public Anfitrion(Partida partida, String nombre, ArrayList<Ficha> fichas, int fondos) {
+        super(nombre, fichas, fondos);
+        this.partida = partida;
+    }
+
+    public Anfitrion(Partida partida, String nombre) {
+        super(nombre);
+        this.partida = partida;
+    }    
+    
     public Partida getPartida() {
         return partida;
     }
