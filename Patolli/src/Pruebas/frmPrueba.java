@@ -301,7 +301,9 @@ public class frmPrueba extends javax.swing.JFrame {
 //            y = y + 40;
 //        }
 //        g.drawLine(390, 70, 390, 710);        
+        g.drawRect(0, 0, 40, 40);
         g.setColor(Color.red);
+        
         if(this.posicionCasilla <= 220 )
         {
         g.drawOval(this.posicionCasilla, 360, 20, 20);

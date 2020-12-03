@@ -58,6 +58,8 @@ public class FrameCrearPartida extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         btCrearPartida = new javax.swing.JButton();
         btSalir = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        tfFondos = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Crear partida");
@@ -155,6 +157,21 @@ public class FrameCrearPartida extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Fondos:");
+
+        tfFondos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfFondosActionPerformed(evt);
+            }
+        });
+        tfFondos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfFondosKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -163,7 +180,6 @@ public class FrameCrearPartida extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
@@ -175,25 +191,29 @@ public class FrameCrearPartida extends javax.swing.JFrame {
                             .addComponent(cBNumJug, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(tfApuestaMax))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(tfApuestaMin))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(tfApuestaF, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(78, 78, 78)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel7)
+                                        .addComponent(jLabel4)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tfApuestaF, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(tfApuestaMin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(33, 33, 33)
                                 .addComponent(rbApuestaF)
                                 .addGap(18, 18, 18)
-                                .addComponent(rbApuestaV))))
+                                .addComponent(rbApuestaV))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(72, 72, 72)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(tfApuestaMax, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(tfFondos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btSalir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -213,15 +233,20 @@ public class FrameCrearPartida extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(cBTablero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(tfApuestaF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel7)
+                    .addComponent(tfFondos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(cBNumJug, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(tfApuestaF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(tfApuestaMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(tfApuestaMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -321,6 +346,18 @@ public class FrameCrearPartida extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_tfApuestaMaxKeyTyped
+
+    private void tfFondosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfFondosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfFondosActionPerformed
+
+    private void tfFondosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfFondosKeyTyped
+        char c = evt.getKeyChar();
+        if(c < '0' || c > '9')
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfFondosKeyTyped
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCrearPartida;
@@ -334,12 +371,14 @@ public class FrameCrearPartida extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     public static javax.swing.JRadioButton rbApuestaF;
     public static javax.swing.JRadioButton rbApuestaV;
     public static javax.swing.JTextField tfApuestaF;
     public static javax.swing.JTextField tfApuestaMax;
     public static javax.swing.JTextField tfApuestaMin;
+    private javax.swing.JTextField tfFondos;
     // End of variables declaration//GEN-END:variables
 
 // Aquí empiezan los métodos utilizados para el frame.
@@ -380,16 +419,18 @@ public class FrameCrearPartida extends javax.swing.JFrame {
 /* Instanceamos las apuestas en 0 debido a que aun no sabemos que tipo de apuesta 
    Elejira el usuario.
 */   
-    int apuestaF = 0, apuestaMax = 0, apuestaMin = 0;
+    int apuestaF = 0, apuestaMax = 0, apuestaMin = 0, fondo =0;
 // Instanceamos un string para el código de la partida    
     String codigo = "";
 // Verificamos el tipo de apuesta y asignamos los valores correspondientes.    
     if(this.rbApuestaF.isSelected() == true)
     {
+        fondo = Integer.parseInt(this.tfFondos.getText());
         apuestaF = Integer.parseInt(this.tfApuestaF.getText());    
     }
     else
     {
+        fondo = Integer.parseInt(this.tfFondos.getText());
         apuestaMax = Integer.parseInt(this.tfApuestaMax.getText());
         apuestaMin = Integer.parseInt(this.tfApuestaMin.getText());
     }    
@@ -407,6 +448,7 @@ public class FrameCrearPartida extends javax.swing.JFrame {
 /* Se crea un objeto de tipo partida con todos los valores que se han reunido
     a lo largo de este método.
 */
+    this.anf.setFondos(fondo);
     Partida partida = new Partida(codigo, tablero, apuestaMax, apuestaMin, apuestaF, numJ, numF, anf);
 /*
     Se crea y muestra un JOptionPane con la finalidad de mostrarle al usuario

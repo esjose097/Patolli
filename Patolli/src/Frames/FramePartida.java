@@ -6,6 +6,7 @@
 package Frames;
 
 import POJOS.*;
+import Control.*;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -17,7 +18,8 @@ import javax.swing.JPanel;
  * @author Equipo 4
  */
 public class FramePartida extends javax.swing.JFrame {
-    private Partida partida;
+    private Partida partida;   
+    private controlTablero ct;   
     FondoPanel fondo = new FondoPanel();
     /**
      * Creates new form FramePartida
@@ -26,10 +28,14 @@ public class FramePartida extends javax.swing.JFrame {
     public FramePartida(Partida partida) {
 //        this.setContentPane(fondo);
  this.getContentPane().setBackground(Color.LIGHT_GRAY);
-        initComponents();
-        this.setBounds(0, 0, 800, 800);
-        this.setLocationRelativeTo(null);
         this.partida = partida;
+        this.ct = new controlTablero(this.partida.getTablero());
+        ct.setBounds(275, -50, 800, 800);
+        add(ct);
+        initComponents();
+        this.cargarJugador();
+        this.setBounds(0, 0, 1300, 800);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -41,114 +47,45 @@ public class FramePartida extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btTirarCañas1 = new javax.swing.JButton();
-        btTirarCañas2 = new javax.swing.JButton();
-        btTirarCañas3 = new javax.swing.JButton();
-        btTirarCañas4 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLNomJug1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        tfFichas1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        tfPuntos1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        tfFichas1 = new javax.swing.JTextField();
+        tfPuntos1 = new javax.swing.JTextField();
         tfFondos1 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        tfFichas2 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        tfPuntos2 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        tfFondos2 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        tfFichas3 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        tfPuntos3 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        tfFondos3 = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        tfFichas4 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        tfPuntos4 = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        tfFondos4 = new javax.swing.JTextField();
-        tfCañas = new javax.swing.JTextField();
-        tfCañas1 = new javax.swing.JTextField();
-        tfCañas2 = new javax.swing.JTextField();
-        tfCañas3 = new javax.swing.JTextField();
+        btTirarCañas1 = new javax.swing.JButton();
         btSalir1 = new javax.swing.JButton();
-        btSalir2 = new javax.swing.JButton();
-        btSalir3 = new javax.swing.JButton();
-        btSalir4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(800, 800));
 
-        btTirarCañas1.setText("Tirar Cañas");
+        jPanel1.setBackground(new java.awt.Color(255, 255, 153));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        btTirarCañas2.setText("Tirar Cañas");
-
-        btTirarCañas3.setText("Tirar Cañas");
-
-        btTirarCañas4.setText("Tirar Cañas");
+        jLNomJug1.setText("Nombre");
 
         jLabel1.setText("Fichas");
 
-        tfFichas1.setEnabled(false);
-        tfFichas1.setOpaque(false);
-
         jLabel2.setText("Puntos ");
-
-        tfPuntos1.setEnabled(false);
 
         jLabel3.setText("Fondos");
 
+        tfFichas1.setBackground(new java.awt.Color(240, 240, 240));
+        tfFichas1.setEnabled(false);
+        tfFichas1.setOpaque(false);
+
+        tfPuntos1.setEnabled(false);
+
         tfFondos1.setEnabled(false);
 
-        jLabel4.setText("Fichas");
-
-        tfFichas2.setEnabled(false);
-
-        jLabel5.setText("Puntos ");
-
-        tfPuntos2.setEnabled(false);
-
-        jLabel6.setText("Fondos");
-
-        tfFondos2.setEnabled(false);
-
-        jLabel7.setText("Fichas");
-
-        tfFichas3.setEnabled(false);
-
-        jLabel8.setText("Puntos ");
-
-        tfPuntos3.setEnabled(false);
-
-        jLabel9.setText("Fondos");
-
-        tfFondos3.setEnabled(false);
-
-        jLabel10.setText("Fichas");
-
-        tfFichas4.setEnabled(false);
-
-        jLabel11.setText("Puntos ");
-
-        tfPuntos4.setEnabled(false);
-
-        jLabel12.setText("Fondos");
-
-        tfFondos4.setEnabled(false);
-
-        tfCañas.setEnabled(false);
-
-        tfCañas1.setEnabled(false);
-
-        tfCañas2.setEnabled(false);
-        tfCañas2.addActionListener(new java.awt.event.ActionListener() {
+        btTirarCañas1.setText("Tirar Cañas");
+        btTirarCañas1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfCañas2ActionPerformed(evt);
+                btTirarCañas1ActionPerformed(evt);
             }
         });
-
-        tfCañas3.setEnabled(false);
 
         btSalir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Delete.png"))); // NOI18N
         btSalir1.setText("Salir");
@@ -158,183 +95,73 @@ public class FramePartida extends javax.swing.JFrame {
             }
         });
 
-        btSalir2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Delete.png"))); // NOI18N
-        btSalir2.setText("Salir");
-        btSalir2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSalir2ActionPerformed(evt);
-            }
-        });
-
-        btSalir3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Delete.png"))); // NOI18N
-        btSalir3.setText("Salir");
-        btSalir3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSalir3ActionPerformed(evt);
-            }
-        });
-
-        btSalir4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Delete.png"))); // NOI18N
-        btSalir4.setText("Salir");
-        btSalir4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSalir4ActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(tfFichas1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tfPuntos1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tfFondos1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLNomJug1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btTirarCañas1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLNomJug1)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(tfFichas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(tfPuntos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(tfFondos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btTirarCañas1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btSalir1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfFichas1)
-                            .addComponent(tfPuntos1)
-                            .addComponent(tfFondos1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 543, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel4)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel6)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfFichas2)
-                            .addComponent(tfPuntos2)
-                            .addComponent(tfFondos2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btTirarCañas4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfCañas3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btSalir3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 259, Short.MAX_VALUE)
-                                .addComponent(btSalir4)
-                                .addGap(18, 18, 18)
-                                .addComponent(tfCañas1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btTirarCañas3))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel9))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(tfFichas3)
-                                    .addComponent(tfPuntos3)
-                                    .addComponent(tfFondos3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel12))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(tfFichas4)
-                                    .addComponent(tfPuntos4)
-                                    .addComponent(tfFondos4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btTirarCañas1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfCañas, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btSalir1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btSalir2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tfCañas2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btTirarCañas2)))))
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 583, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btTirarCañas1)
-                            .addComponent(btTirarCañas2)
-                            .addComponent(tfCañas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfCañas2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btSalir1)))
-                    .addComponent(btSalir2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(tfFichas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(tfPuntos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(tfFondos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(tfFichas2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(tfPuntos2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(tfFondos2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 273, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(tfFichas3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(tfPuntos3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(tfFondos3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(tfFichas4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(tfPuntos4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(tfFondos4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btTirarCañas3)
-                    .addComponent(btTirarCañas4)
-                    .addComponent(tfCañas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfCañas3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btSalir3)
-                    .addComponent(btSalir4))
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(299, Short.MAX_VALUE))
         );
 
         pack();
@@ -347,301 +174,31 @@ public class FramePartida extends javax.swing.JFrame {
         entrar.setVisible(true);
     }//GEN-LAST:event_btSalir1ActionPerformed
 
-    private void btSalir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalir2ActionPerformed
-        // TODO add your handling code here:
-        FrameInicial entrar= new FrameInicial();
-        this.setVisible(false);
-        entrar.setVisible(true);
-    }//GEN-LAST:event_btSalir2ActionPerformed
-
-    private void btSalir3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalir3ActionPerformed
-        // TODO add your handling code here:
-        FrameInicial entrar= new FrameInicial();
-        this.setVisible(false);
-        entrar.setVisible(true);
-    }//GEN-LAST:event_btSalir3ActionPerformed
-
-    private void btSalir4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalir4ActionPerformed
-        // TODO add your handling code here:
-        FrameInicial entrar= new FrameInicial();
-        this.setVisible(false);
-        entrar.setVisible(true);
-    }//GEN-LAST:event_btSalir4ActionPerformed
-
-    private void tfCañas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCañas2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfCañas2ActionPerformed
-
-    @Override
-    public void paint(Graphics g){
-    super.paint(g);
-    int x = 0;
-    int y = 0;
-    g.setColor(Color.BLACK);
-    if(this.partida.getTablero().getTamanio() == 8)
-    {
-        x = 190; y = 350;
-//  Se pinta un rectangulo grande para las dos aspas horizontales
-        g.drawRect(x, y, 400, 80);
-        for(int i = 0; i < 11; i++)
-        {
-//  Se pintan lineas verticales brincando de 80 en 80 el eje Y
-            g.drawLine(x, y, x, y+80);
-//  Se rellenan los cuadros de inicio de los jugadores
-            if(i == 3)
-            {
-                g.setColor(Color.red);
-                g.fillRect(x, y+40, 40, 40);
-                g.setColor(Color.BLACK);
-            }
-            else if(i == 6)
-            {
-                g.setColor(Color.red);
-                g.fillRect(x, y, 40, 40);
-                g.setColor(Color.BLACK);                
-            }
-// Se incrementa el eje x pra poder pintar la siguiente linea.
-            x = x + 40;
-        }
-//  Se pinta una sola linea horizontal para terminar de pintar los cuadros.        
-        g.drawLine(190, 390, 590, 390);
+    private void btTirarCañas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTirarCañas1ActionPerformed
         
-        x = 350;
-        y = 190;
-// Se pinta un rectanguo vertical para las 2 aspas
-        g.drawRect(x, y, 80, 400);
-        for(int i = 0; i < 11; i++)
-        {            
-//  Se pintan lineas horizontales brincando de 80 en 80 en el eje X            
-            g.drawLine(x, y, x+80, y);
-//  Se rellenan las casillas de inicio de los jugadores.
-            if(i == 3)
-            {
-                g.setColor(Color.red);
-                g.fillRect(x, y, 40, 40);
-                g.setColor(Color.BLACK);
-            }
-            if(i == 6)
-            {
-                g.setColor(Color.red);
-                g.fillRect(x+40, y, 40, 40);
-                g.setColor(Color.BLACK);
-            }          
-// Se incrementa el eje Y para ´pintar las siguiente linea.            
-            y = y + 40;
-        }
-// Finalmente se pinta una sola linea vertical para terminar de pintar los cuadrados.        
-        g.drawLine(390, 190, 390, 590);    
-    }
+    }//GEN-LAST:event_btTirarCañas1ActionPerformed
 
-    else if(this.partida.getTablero().getTamanio() == 10)
-    {
-        x = 150; y = 350;
-//  Se pinta un rectangulo grande para las dos aspas horizontales        
-        g.drawRect(x, y, 480, 80);
-        for(int i = 0; i < 12; i++)
-        {
-//  Se pintan lineas verticales brincando de 80 en 80 el eje Y            
-            g.drawLine(x, y, x, y+80);
-//  Se rellenan los cuadros de inicio de los jugadores
-            if(i == 4)
-            {
-                g.setColor(Color.red);
-                g.fillRect(x, y+40, 40, 40);
-                g.setColor(Color.BLACK);
-            }
-            else if(i == 7)
-            {
-                g.setColor(Color.red);
-                g.fillRect(x, y, 40, 40);
-                g.setColor(Color.BLACK);                
-            }
-// Se incrementa el eje x pra poder pintar la siguiente linea.            
-            x = x + 40;
-        }
-//  Se pinta una sola linea horizontal para terminar de pintar los cuadros.        
-        g.drawLine(150, 390, 630, 390);
-        
-        x = 350;
-        y = 150;
-// Se pinta un rectanguo vertical para las 2 aspas        
-        g.drawRect(x, y, 80, 480);
-        for(int i = 0; i < 12; i++)
-        {            
-// Se pintan lineas horizontales que aumentan su eje x de 80 en 80            
-            g.drawLine(x, y, x+80, y);
-// Se rellenan las casillas de partida de cada jugador.
-            if(i == 4)
-            {
-                g.setColor(Color.red);
-                g.fillRect(x, y, 40, 40);
-                g.setColor(Color.BLACK);
-            }
-            if(i == 7)
-            {
-                g.setColor(Color.red);
-                g.fillRect(x+40, y, 40, 40);
-                g.setColor(Color.BLACK);
-            }       
-// Se incrementa el eje Y para poder pintar la siguiente linea horizontal.            
-            y = y + 40;
-        }
-// Se pinta una sola linea vertical para terminar de pintar las casillas.        
-        g.drawLine(390, 150, 390, 630);   
-    }
-
-    else if(this.partida.getTablero().getTamanio() == 12)
-    {
-        x = 110; y = 350;
-// Se pinta un rectangulo grande horizontal para las dos aspas.        
-        g.drawRect(x, y, 560, 80);
-        for(int i = 0; i < 14; i++)
-        {
-// Se pintan lineas verticales que aumentan su eje Y de 80 en 80            
-            g.drawLine(x, y, x, y+80);
-// Se pintan las casilas de inicio de los jugadores.
-            if(i == 5)
-            {
-                g.setColor(Color.red);
-                g.fillRect(x, y+40, 40, 40);
-                g.setColor(Color.BLACK);
-            }            
-            else if(i == 8)
-            {
-                g.setColor(Color.red);
-                g.fillRect(x, y, 40, 40);
-                g.setColor(Color.BLACK);                
-            }          
-// Se aumenta el eje X para pintar las siguiente linea vertical            
-            x = x + 40;
-        }
-// Se pinta una sola linea horizontal para terminar de pintar las casillas.        
-        g.drawLine(110, 390, 670, 390);
-        
-        x = 350;
-        y = 110;
-// Se pinta un rectangulo vertical grande para las 2 aspas        
-        g.drawRect(x, y, 80, 560);
-        for(int i = 0; i < 14; i++)
-        {            
-// Se pintan lineas horizontales que aumentan su eje x de 80 en 80            
-            g.drawLine(x, y, x+80, y);
-// Se rellenan las casillas de inicio de los jugadores.            
-            if(i == 5)
-            {
-                g.setColor(Color.red);
-                g.fillRect(x, y, 40, 40);
-                g.setColor(Color.BLACK);
-            }
-            if(i == 8)
-            {
-                g.setColor(Color.red);
-                g.fillRect(x+40, y, 40, 40);
-                g.setColor(Color.BLACK);
-            }     
-// Se incrementa el eje Y para poder pintar la siguiente linea horizontal..            
-            y = y + 40;
-        }
-// Se pinta una sola linea vertical para terminar de pitnar las casillas.        
-        g.drawLine(390, 110, 390, 670);
-    }
-
-//      Tablero de 14 casillas
-    else if(this.partida.getTablero().getTamanio() == 14)
-    {
-        x = 70; y = 350;
-// Se pinta un rectangulo grande para las dos aspas.        
-        g.drawRect(x, y, 640, 80);
-        for(int i = 0; i < 16; i++)
-        {
-// Se pintan lineas verticales que aumentan su eje Y en 80            
-            g.drawLine(x, y, x, y+80);
-// Se rellenan las casilas de inicio de cada jugador.
-            if(i == 6)
-            {
-                g.setColor(Color.red);
-                g.fillRect(x, y+40, 40, 40);
-                g.setColor(Color.BLACK);
-            }
-            else if(i == 9)
-            {
-                g.setColor(Color.red);
-                g.fillRect(x, y, 40, 40);
-                g.setColor(Color.BLACK);                
-            }                                    
-// Se incrementa el eje X para poder pintar la siguiente linea vertical.            
-            x = x + 40;
-        }
-// Se dibuja una sola linea horizontal para terminar de pintar las casillas.        
-        g.drawLine(70, 390, 710, 390);
-        
-        x = 350;
-        y = 70;
-// Se dibuja un rectangulo vertical grande para las dos aspas.        
-        g.drawRect(x, y, 80, 640);
-        for(int i = 0; i < 16; i++)
-        {            
-// Se dibujan lineas horizontales que aumentan su eje X en 80.            
-            g.drawLine(x, y, x+80, y);
-// Se rellenan las casillas de inicio de cada jugador.            
-            if(i == 6)
-            {
-                g.setColor(Color.red);
-                g.fillRect(x, y, 40, 40);
-                g.setColor(Color.BLACK);
-            }
-            if(i == 9)
-            {
-                g.setColor(Color.red);
-                g.fillRect(x+40, y, 40, 40);
-                g.setColor(Color.BLACK);
-            }                                    
-// Se aumenta el eje Y para poder pintar la siguiente linea horizontal.            
-            y = y + 40;
-        }
-// Se pinta una sola linea vertical para terminar de pintal las casillas.        
-        g.drawLine(390, 70, 390, 710);        
-    }
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btSalir1;
-    private javax.swing.JButton btSalir2;
-    private javax.swing.JButton btSalir3;
-    private javax.swing.JButton btSalir4;
     private javax.swing.JButton btTirarCañas1;
-    private javax.swing.JButton btTirarCañas2;
-    private javax.swing.JButton btTirarCañas3;
-    private javax.swing.JButton btTirarCañas4;
+    private javax.swing.JLabel jLNomJug1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField tfCañas;
-    private javax.swing.JTextField tfCañas1;
-    private javax.swing.JTextField tfCañas2;
-    private javax.swing.JTextField tfCañas3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField tfFichas1;
-    private javax.swing.JTextField tfFichas2;
-    private javax.swing.JTextField tfFichas3;
-    private javax.swing.JTextField tfFichas4;
     private javax.swing.JTextField tfFondos1;
-    private javax.swing.JTextField tfFondos2;
-    private javax.swing.JTextField tfFondos3;
-    private javax.swing.JTextField tfFondos4;
     private javax.swing.JTextField tfPuntos1;
-    private javax.swing.JTextField tfPuntos2;
-    private javax.swing.JTextField tfPuntos3;
-    private javax.swing.JTextField tfPuntos4;
     // End of variables declaration//GEN-END:variables
-class FondoPanel extends JPanel {
+    
+
+    private void cargarJugador(){
+        this.jLNomJug1.setText(this.partida.getAnfitrion().getNombre());
+        this.tfFondos1.setText(this.partida.getAnfitrion().getFondos()+"");
+        this.tfPuntos1.setText(this.partida.getAnfitrion().getPuntos()+"");
+    }
+    
+    class FondoPanel extends JPanel {
 
         private Image imagen;
 
