@@ -448,7 +448,16 @@ public class FrameCrearPartida extends javax.swing.JFrame {
 /* Se crea un objeto de tipo partida con todos los valores que se han reunido
     a lo largo de este método.
 */
+//  Se establecen los fondos al anfitrión.
     this.anf.setFondos(fondo);
+/*
+    Este pequeño for se encarga de crear y asignar objetos de tipo ficha al anfitrión.
+*/
+    for(int i = 0; i < numF; i++)
+    {
+        Ficha f = new Ficha("red", 0, 0);
+        this.anf.addFicha(f);
+    }
     Partida partida = new Partida(codigo, tablero, apuestaMax, apuestaMin, apuestaF, numJ, numF, anf);
 /*
     Se crea y muestra un JOptionPane con la finalidad de mostrarle al usuario

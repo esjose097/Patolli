@@ -8,33 +8,38 @@ package Frames;
 import POJOS.*;
 import Control.*;
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Image;
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
+import javax.swing.JLayeredPane;
 
 /**
  *
  * @author Equipo 4
- */
+ */ 
 public class FramePartida extends javax.swing.JFrame {
     private Partida partida;   
-    private controlTablero ct;   
-    FondoPanel fondo = new FondoPanel();
+    private controlTablero ct;
+    private controlCanias cc;
     /**
      * Creates new form FramePartida
      * @param partida
      */
     public FramePartida(Partida partida) {
-//        this.setContentPane(fondo);
- this.getContentPane().setBackground(Color.LIGHT_GRAY);
+        this.getContentPane().setBackground(Color.LIGHT_GRAY);
         this.partida = partida;
+        this.cc = new controlCanias();
         this.ct = new controlTablero(this.partida.getTablero());
-        ct.setBounds(275, -50, 800, 800);
-        add(ct);
+        cc.setBounds(0, 10, 800,800);
+        ct.setBounds(200, 0, 800, 800); 
+        cc.setOpaque(false);
+        ct.setOpaque(false);
         initComponents();
+        this.jLCodigo.setText(this.partida.getCodigo());
+        JLayeredPane capas = new JLayeredPane();
+        capas.setBounds(0, 0, 1300, 800);
+        capas.add(ct, 1);
+        capas.add(cc, 2);        
+        this.getContentPane().add(capas);
         this.cargarJugador();
-        this.setBounds(0, 0, 1300, 800);
+        this.setBounds(0, 0, 1300, 700);
         this.setLocationRelativeTo(null);
     }
 
@@ -57,13 +62,15 @@ public class FramePartida extends javax.swing.JFrame {
         tfFondos1 = new javax.swing.JTextField();
         btTirarCañas1 = new javax.swing.JButton();
         btSalir1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLCodigo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(800, 800));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 153));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jLNomJug1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLNomJug1.setText("Nombre");
 
         jLabel1.setText("Fichas");
@@ -115,6 +122,7 @@ public class FramePartida extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(tfFondos1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
                         .addComponent(jLNomJug1)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -123,7 +131,7 @@ public class FramePartida extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btTirarCañas1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,19 +157,35 @@ public class FramePartida extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setText("Código de partida:");
+
+        jLCodigo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLCodigo.setText("jLabel5");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 583, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(477, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLCodigo)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(299, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 266, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLCodigo))
+                .addContainerGap())
         );
 
         pack();
@@ -175,16 +199,19 @@ public class FramePartida extends javax.swing.JFrame {
     }//GEN-LAST:event_btSalir1ActionPerformed
 
     private void btTirarCañas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTirarCañas1ActionPerformed
-        
+    this.cc.setTirada(this.partida.getAnfitrion().getCañas().tirarCania());
+    this.cc.pintarTiro();
     }//GEN-LAST:event_btTirarCañas1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btSalir1;
     private javax.swing.JButton btTirarCañas1;
+    private javax.swing.JLabel jLCodigo;
     private javax.swing.JLabel jLNomJug1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField tfFichas1;
     private javax.swing.JTextField tfFondos1;
@@ -196,18 +223,5 @@ public class FramePartida extends javax.swing.JFrame {
         this.jLNomJug1.setText(this.partida.getAnfitrion().getNombre());
         this.tfFondos1.setText(this.partida.getAnfitrion().getFondos()+"");
         this.tfPuntos1.setText(this.partida.getAnfitrion().getPuntos()+"");
-    }
-    
-    class FondoPanel extends JPanel {
-
-        private Image imagen;
-
-        public void paint(Graphics g) {
-            imagen = new ImageIcon(getClass().getResource("/imagenes/dorado1.png")).getImage();
-            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
-            setOpaque(false);
-            super.paint(g);
-        }
-    }
-
+    }       
 }

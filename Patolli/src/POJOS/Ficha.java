@@ -10,13 +10,14 @@ package POJOS;
 public class Ficha {
     
     private String color;    
-    private int posicion;
+    private int x, y;
     
     public Ficha(){}
     
-    public Ficha(String color, int posicion){
+    public Ficha(String color, int x, int y){
         this.color = color;
-        this.posicion = posicion;
+        this.x = x;
+        this.y = y;
     }
 
     public String getColor() {
@@ -26,13 +27,30 @@ public class Ficha {
     public void setColor(String color) {
         this.color = color;
     }
-
-    public int getPosicion() {
+/*
+    Método que se encarga de devolver las dos posiciones en un arreglo
+    (Me daba flojera estar obteniendo la x y la y por separado ajajaja)
+*/
+    public int[] getPosicion() {
+        int[] posicion = {this.x, this.y};
         return posicion;
     }
 
-    public void setPosicion(int posicion) {
-        this.posicion = posicion;
+    public int getX() {
+        return x;
     }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
         
 }

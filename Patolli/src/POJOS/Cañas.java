@@ -12,14 +12,15 @@ import java.util.Random;
 public class Cañas {
     
     public Cañas(){}
-/*
- Método encargado de devolver un int alazar para simular la tirada de cañas
- utilizando un objeto de tipo Random.
-*/    
-    private int tirarCania(){
+
+/**
+ * Método encaragdo de simular una tirada de cañas.
+ * @return  tirada
+ */    
+    public int tirarCania(){
         Random r = new Random();
         int tirada;
-        tirada = (r.nextInt(6)+1);        
+        tirada = (r.nextInt(7));        
         return tirada;
     }
 }

@@ -63,6 +63,10 @@ public class Usuario {
     public void setFichas(ArrayList<Ficha> fichas) {
         this.fichas = fichas;
     }
+    
+    public void addFicha(Ficha f){
+        this.fichas.add(f);
+    }
 
     public int getPuntos() {
         return puntos;

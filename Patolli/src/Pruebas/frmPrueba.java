@@ -3,6 +3,7 @@
  */
 package Pruebas;
 
+import POJOS.Cañas;
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -16,11 +17,13 @@ public class frmPrueba extends javax.swing.JFrame {
      * Creates new form frmPrueba
      */
     int posicionCasilla;
+    int tirada;
     public frmPrueba() {
         initComponents();
         this.setBounds(0, 0, 800, 800);
         this.setLocationRelativeTo(null);
         posicionCasilla = 80;
+        tirada = 0;
     }
 
     /**
@@ -64,8 +67,12 @@ public class frmPrueba extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoverActionPerformed
+        Cañas c = new Cañas();
+        int aux = c.tirarCania();
+        System.out.println(aux);
+        this.tirada = aux;
         repaint();
-        this.posicionCasilla = posicionCasilla+40;
+        
     }//GEN-LAST:event_btnMoverActionPerformed
 
     /**
@@ -118,50 +125,50 @@ public class frmPrueba extends javax.swing.JFrame {
         //g.drawLine(350, 350, 300, 350);
 
         //Tablero de 8 aspas
-//        int x = 0;
-//        int y = 0;
-//        x = 190; y = 350;
-//        g.drawRect(x, y, 400, 80);
-//        for(int i = 0; i < 11; i++)
-//        {
-//            g.drawLine(x, y, x, y+80);
-//            if(i == 3)
-//            {
-//                g.setColor(Color.red);
-//                g.fillRect(x, y+40, 40, 40);
-//                g.setColor(Color.BLACK);
-//            }
-//            else if(i == 6)
-//            {
-//                g.setColor(Color.red);
-//                g.fillRect(x, y, 40, 40);
-//                g.setColor(Color.BLACK);                
-//            }
-//            x = x + 40;
-//        }
-//        g.drawLine(190, 390, 590, 390);
-//        
-//        x = 350;
-//        y = 190;
-//        g.drawRect(x, y, 80, 400);
-//        for(int i = 0; i < 11; i++)
-//        {            
-//            g.drawLine(x, y, x+80, y);
-//            if(i == 3)
-//            {
-//                g.setColor(Color.red);
-//                g.fillRect(x, y, 40, 40);
-//                g.setColor(Color.BLACK);
-//            }
-//            if(i == 6)
-//            {
-//                g.setColor(Color.red);
-//                g.fillRect(x+40, y, 40, 40);
-//                g.setColor(Color.BLACK);
-//            }            
-//            y = y + 40;
-//        }
-//        g.drawLine(390, 190, 390, 590);    
+        int x = 0;
+        int y = 0;
+        x = 190; y = 350;
+        g.drawRect(x, y, 400, 80);
+        for(int i = 0; i < 11; i++)
+        {
+            g.drawLine(x, y, x, y+80);
+            if(i == 3)
+            {
+                g.setColor(Color.red);
+                g.fillRect(x, y+40, 40, 40);
+                g.setColor(Color.BLACK);
+            }
+            else if(i == 6)
+            {
+                g.setColor(Color.red);
+                g.fillRect(x, y, 40, 40);
+                g.setColor(Color.BLACK);                
+            }
+            x = x + 40;
+        }
+        g.drawLine(190, 390, 590, 390);
+        
+        x = 350;
+        y = 190;
+        g.drawRect(x, y, 80, 400);
+        for(int i = 0; i < 11; i++)
+        {            
+            g.drawLine(x, y, x+80, y);
+            if(i == 3)
+            {
+                g.setColor(Color.red);
+                g.fillRect(x, y, 40, 40);
+                g.setColor(Color.BLACK);
+            }
+            if(i == 6)
+            {
+                g.setColor(Color.red);
+                g.fillRect(x+40, y, 40, 40);
+                g.setColor(Color.BLACK);
+            }            
+            y = y + 40;
+        }
+        g.drawLine(390, 190, 390, 590);    
 
 
 //        Tablero de 10
@@ -301,12 +308,24 @@ public class frmPrueba extends javax.swing.JFrame {
 //            y = y + 40;
 //        }
 //        g.drawLine(390, 70, 390, 710);        
-        g.drawRect(0, 0, 40, 40);
-        g.setColor(Color.red);
-        
-        if(this.posicionCasilla <= 220 )
+//        g.drawRect(0, 0, 40, 40);
+
+         y = 250;
+         x = 15;
+        g.setColor(Color.green);
+        for(int i = 0; i < 6; i++)
         {
-        g.drawOval(this.posicionCasilla, 360, 20, 20);
-        }
+            g.drawRect(x, y, 40, 40);
+            y += 45;
+        }                
+        g.setColor(Color.black);
+        x = 25;
+        y = 260;
+        for(int i = 0; i < this.tirada; i++)
+        {
+            g.fillOval(x, y, 21, 21);
+            y += 45;
+        }        
+        System.out.println(this.tirada);
     }            
 }
