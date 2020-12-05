@@ -5,8 +5,9 @@
  */
 package Frames;
 
+import dibujos.lienzoTablero;
+import dibujos.lienzoCanias;
 import POJOS.*;
-import Control.*;
 import java.awt.Color;
 import javax.swing.JLayeredPane;
 
@@ -16,8 +17,8 @@ import javax.swing.JLayeredPane;
  */ 
 public class FramePartida extends javax.swing.JFrame {
     private Partida partida;   
-    private controlTablero ct;
-    private controlCanias cc;
+    private lienzoTablero lt;
+    private lienzoCanias lc;
     /**
      * Creates new form FramePartida
      * @param partida
@@ -25,19 +26,9 @@ public class FramePartida extends javax.swing.JFrame {
     public FramePartida(Partida partida) {
         this.getContentPane().setBackground(Color.LIGHT_GRAY);
         this.partida = partida;
-        this.cc = new controlCanias();
-        this.ct = new controlTablero(this.partida.getTablero());
-        cc.setBounds(0, 10, 800,800);
-        ct.setBounds(200, 0, 800, 800); 
-        cc.setOpaque(false);
-        ct.setOpaque(false);
+        this.cargarPaneles();
         initComponents();
         this.jLCodigo.setText(this.partida.getCodigo());
-        JLayeredPane capas = new JLayeredPane();
-        capas.setBounds(0, 0, 1300, 800);
-        capas.add(ct, 1);
-        capas.add(cc, 2);        
-        this.getContentPane().add(capas);
         this.cargarJugador();
         this.setBounds(0, 0, 1300, 700);
         this.setLocationRelativeTo(null);
@@ -199,8 +190,8 @@ public class FramePartida extends javax.swing.JFrame {
     }//GEN-LAST:event_btSalir1ActionPerformed
 
     private void btTirarCañas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTirarCañas1ActionPerformed
-    this.cc.setTirada(this.partida.getAnfitrion().getCañas().tirarCania());
-    this.cc.pintarTiro();
+    this.lc.setTirada(this.partida.getAnfitrion().getCañas().tirarCania());
+    this.lc.pintarTiro();
     }//GEN-LAST:event_btTirarCañas1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -218,10 +209,28 @@ public class FramePartida extends javax.swing.JFrame {
     private javax.swing.JTextField tfPuntos1;
     // End of variables declaration//GEN-END:variables
     
+/**
+ * Método estatico encargado de cargar los multiples paneles que se utilizarán
+ * para la graficación de los componentes.
+ */
+    private void cargarPaneles(){
+        this.lc = new lienzoCanias();
+        this.lt = new lienzoTablero(this.partida.getTablero());
+        lc.setBounds(0, 10, 800,800);
+        lt.setBounds(200, -50, 800, 800); 
+        lc.setOpaque(false);
+        lt.setOpaque(false);
+        JLayeredPane capas = new JLayeredPane();
+        capas.setBounds(0, 0, 1300, 800);
+        capas.add(lt, 1);
+        capas.add(lc, 2);        
+        this.getContentPane().add(capas);        
+    }
 
     private void cargarJugador(){
         this.jLNomJug1.setText(this.partida.getAnfitrion().getNombre());
         this.tfFondos1.setText(this.partida.getAnfitrion().getFondos()+"");
         this.tfPuntos1.setText(this.partida.getAnfitrion().getPuntos()+"");
+        this.tfFichas1.setText(this.partida.getAnfitrion().getFichas().size()+"");
     }       
 }

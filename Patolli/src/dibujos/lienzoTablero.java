@@ -3,7 +3,7 @@
  * Fue hecha con el proposito de pintar de mejor manera el tablero
  * y poder manipuarlo de una mejor manera.
  */
-package Control;
+package dibujos;
 
 import POJOS.Tablero;
 import java.awt.Color;
@@ -15,17 +15,17 @@ import javax.swing.JPanel;
  *
  * @author Equipo 4
  */
-public class controlTablero extends JPanel {
+public class lienzoTablero extends JPanel {
     private final Tablero tablero;
     private Graphics g2d;
     
-    public controlTablero(Tablero t){
+    public lienzoTablero(Tablero t){
         this.tablero = t;        
     }
     
-/*
-    Método encargado de pintar el tablero sobre el canvas segun el tamaño
-    del tablero.
+/**
+ * Método encargado de pintar el tablero sobre el canvas segun el tamaño
+ * del tablero.
 */    
     @Override
     public void paint(Graphics g){   

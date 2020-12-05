@@ -236,12 +236,13 @@ public class FrameCrearPartida extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(tfFondos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(52, 52, 52)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(cBNumJug, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
-                        .addComponent(tfApuestaF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tfApuestaF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(cBNumJug, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -313,7 +314,7 @@ public class FrameCrearPartida extends javax.swing.JFrame {
 
     private void tfApuestaFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfApuestaFKeyTyped
         char c = evt.getKeyChar();
-        if(c < '0' && c > '9')
+        if(c < '0' || c > '9')
         {
             evt.consume();
         }
@@ -325,7 +326,7 @@ public class FrameCrearPartida extends javax.swing.JFrame {
 
     private void tfApuestaMinKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfApuestaMinKeyTyped
         char c = evt.getKeyChar();
-        if(c < '0' && c > '9')
+        if(c < '0' || c > '9')
         {
             evt.consume();
         }
@@ -337,7 +338,7 @@ public class FrameCrearPartida extends javax.swing.JFrame {
 
     private void tfApuestaMaxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfApuestaMaxKeyTyped
         char c = evt.getKeyChar();
-        if(c < '0' && c > '9')
+        if(c < '0' || c > '9')
         {
             evt.consume();
         }
@@ -357,6 +358,10 @@ public class FrameCrearPartida extends javax.swing.JFrame {
         {
             evt.consume();
         }
+        if(this.tfFondos.getText().length() == 4)
+        {
+            evt.consume();
+        }        
     }//GEN-LAST:event_tfFondosKeyTyped
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -432,7 +437,7 @@ public class FrameCrearPartida extends javax.swing.JFrame {
     {
         fondo = Integer.parseInt(this.tfFondos.getText());
         apuestaMax = Integer.parseInt(this.tfApuestaMax.getText());
-        apuestaMin = Integer.parseInt(this.tfApuestaMin.getText());
+        apuestaMin = Integer.parseInt(this.tfApuestaMin.getText());        
     }    
 /* Este pequeño ciclo for se encarga de generar el código de la partida con
     un objeto de tipo Random.

@@ -1,7 +1,7 @@
 /**
  * Esta clase fue creada con el objetivo de gestionar la graficación de las cañas.
  */
-package Control;
+package dibujos;
 
 import POJOS.Cañas;
 import java.awt.Color;
@@ -13,12 +13,12 @@ import javax.swing.JPanel;
  *
  * @author Casal
  */
-public class controlCanias extends JPanel{
-    private Graphics2D g2d;        
+public class lienzoCanias extends JPanel{
+    private Graphics2D g2d;     
     private int tirada;
     
     
-    public controlCanias(){
+    public lienzoCanias(){
         this.tirada = 0;
     }
 
@@ -42,7 +42,6 @@ public class controlCanias extends JPanel{
             g2d.fillOval(x, y, 21, 21);
             y += 45;
         }    
-        System.out.println(this.tirada);
     }               
     public void pintarTiro(){
         g2d.setColor(Color.black);
@@ -55,7 +54,6 @@ public class controlCanias extends JPanel{
                 g2d.fillOval(x, y, 21, 21);
                 y += 45;
             }
-            System.out.println(this.tirada);
             this.repaint();            
         }
     }

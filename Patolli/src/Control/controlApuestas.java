@@ -9,6 +9,6 @@ package Control;
  *
  * @author Casal
  */
-public class controlPartida {
+public class controlApuestas {
     
 }
