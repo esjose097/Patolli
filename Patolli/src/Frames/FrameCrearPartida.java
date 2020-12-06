@@ -5,6 +5,7 @@
  */
 package Frames;
 
+import Control.Control;
 import POJOS.*;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -21,6 +22,7 @@ import javax.swing.JPanel;
 public class FrameCrearPartida extends javax.swing.JFrame {
   FondoPanel fondo = new FondoPanel();
   private Anfitrion anf;
+  private Control c;
     /**
      * Creates new form FrameCrearPartida
      */
@@ -30,6 +32,7 @@ public class FrameCrearPartida extends javax.swing.JFrame {
         this.cargarComboBoxs();
         this.setLocationRelativeTo(this);
         this.anf = anf;
+        this.c = new Control();        
     }
     
     /**
@@ -450,6 +453,8 @@ public class FrameCrearPartida extends javax.swing.JFrame {
     }  
 // Se instancea un objeto de tipo Tablero con su tamaño correspondiente.    
     Tablero tablero = new Tablero(numT);
+    tablero.setCasillas(this.c.getControlT().asignarCasillas(numT));
+    
 /* Se crea un objeto de tipo partida con todos los valores que se han reunido
     a lo largo de este método.
 */
@@ -460,7 +465,7 @@ public class FrameCrearPartida extends javax.swing.JFrame {
 */
     for(int i = 0; i < numF; i++)
     {
-        Ficha f = new Ficha("red", 0, 0);
+        Ficha f = new Ficha("blue", 0, 0);
         this.anf.addFicha(f);
     }
     Partida partida = new Partida(codigo, tablero, apuestaMax, apuestaMin, apuestaF, numJ, numF, anf);

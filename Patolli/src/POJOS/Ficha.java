@@ -11,6 +11,7 @@ public class Ficha {
     
     private String color;    
     private int x, y;
+    private int posicion;
     
     public Ficha(){}
     
@@ -18,6 +19,7 @@ public class Ficha {
         this.color = color;
         this.x = x;
         this.y = y;
+        this.posicion = 0;
     }
 
     public String getColor() {
@@ -31,9 +33,9 @@ public class Ficha {
     Método que se encarga de devolver las dos posiciones en un arreglo
     (Me daba flojera estar obteniendo la x y la y por separado ajajaja)
 */
-    public int[] getPosicion() {
-        int[] posicion = {this.x, this.y};
-        return posicion;
+    public void setCoordenadas(int[] c) {
+        this.x = c[0];
+        this.y = c[1];        
     }
 
     public int getX() {
@@ -52,5 +54,11 @@ public class Ficha {
         this.y = y;
     }
 
-        
+    public int getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(int posicion) {
+        this.posicion = posicion;
+    }               
 }

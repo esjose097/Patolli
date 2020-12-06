@@ -10,6 +10,7 @@ package POJOS;
 public class Tablero {
     
     private Integer tamanio;
+    private Casilla[] casillas;
 
     public Tablero() {}
 
@@ -24,14 +25,12 @@ public class Tablero {
     public void setTamanio(Integer tamanio) {
         this.tamanio = tamanio;
     }        
-    
-    private boolean dibujar(){
-        return true;
+
+    public Casilla[] getCasillas() {
+        return casillas;
     }
-    
-    private boolean actualizar(){
-        return true;
-    }
-    
-    
+
+    public void setCasillas(Casilla[] casillas) {
+        this.casillas = casillas;
+    }                
 }

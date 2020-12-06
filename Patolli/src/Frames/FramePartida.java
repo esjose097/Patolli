@@ -5,11 +5,15 @@
  */
 package Frames;
 
+import Control.*;
 import dibujos.lienzoTablero;
 import dibujos.lienzoCanias;
 import POJOS.*;
+import dibujos.LienzoFichas;
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,15 +21,18 @@ import javax.swing.JLayeredPane;
  */ 
 public class FramePartida extends javax.swing.JFrame {
     private Partida partida;   
+    private controlPartida controlPartida;
     private lienzoTablero lt;
     private lienzoCanias lc;
+    private LienzoFichas lf;
     /**
      * Creates new form FramePartida
      * @param partida
      */
-    public FramePartida(Partida partida) {
+    public FramePartida(Partida partida) {        
         this.getContentPane().setBackground(Color.LIGHT_GRAY);
         this.partida = partida;
+        this.controlPartida = new controlPartida(this.partida);
         this.cargarPaneles();
         initComponents();
         this.jLCodigo.setText(this.partida.getCodigo());
@@ -55,6 +62,7 @@ public class FramePartida extends javax.swing.JFrame {
         btSalir1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLCodigo = new javax.swing.JLabel();
+        btnTirar2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -154,24 +162,38 @@ public class FramePartida extends javax.swing.JFrame {
         jLCodigo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLCodigo.setText("jLabel5");
 
+        btnTirar2.setText("Tirar cañas");
+        btnTirar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTirar2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(477, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLCodigo)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnTirar2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(477, Short.MAX_VALUE)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLCodigo)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnTirar2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 266, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -183,20 +205,23 @@ public class FramePartida extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalir1ActionPerformed
-        // TODO add your handling code here:
-        FrameInicial entrar= new FrameInicial();
-        this.setVisible(false);
-        entrar.setVisible(true);
+        FrameInicial panel = new FrameInicial();
+        panel.setVisible(true);
+        this.dispose();        
     }//GEN-LAST:event_btSalir1ActionPerformed
 
     private void btTirarCañas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTirarCañas1ActionPerformed
-    this.lc.setTirada(this.partida.getAnfitrion().getCañas().tirarCania());
-    this.lc.pintarTiro();
+        this.realizarTiroJ1();
     }//GEN-LAST:event_btTirarCañas1ActionPerformed
+
+    private void btnTirar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTirar2ActionPerformed
+        this.realizarTiroJ2();
+    }//GEN-LAST:event_btnTirar2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btSalir1;
     private javax.swing.JButton btTirarCañas1;
+    private javax.swing.JButton btnTirar2;
     private javax.swing.JLabel jLCodigo;
     private javax.swing.JLabel jLNomJug1;
     private javax.swing.JLabel jLabel1;
@@ -209,6 +234,51 @@ public class FramePartida extends javax.swing.JFrame {
     private javax.swing.JTextField tfPuntos1;
     // End of variables declaration//GEN-END:variables
     
+    private void realizarTiroJ1(){
+    if(this.controlPartida.getTurno() == 1)
+    {
+        int tiro = this.partida.getAnfitrion().getCañas().tirarCania();    
+        this.lc.setTirada(tiro);
+        this.lc.pintarTiro();
+        Ficha f = this.partida.getAnfitrion().getFichas().get(0);
+        f = this.controlPartida.actualizarFicha(tiro, f);
+        this.partida.addFicha(f);    
+        ArrayList<Ficha> fichas = this.partida.getAnfitrion().getFichas();
+        fichas.set(0, f);
+        this.partida.getAnfitrion().setFichas(fichas);
+        this.lf.setFichas(this.partida.getFichasJuego());
+        this.lf.actualizar();
+        this.controlPartida.cambiarTurno();
+    }
+    else{
+        JOptionPane.showMessageDialog(this, "Es turno del jugador: " + this.controlPartida.getTurno(),
+        "Error", JOptionPane.INFORMATION_MESSAGE);
+        
+    }
+    }
+    
+    private void realizarTiroJ2(){
+    if(this.controlPartida.getTurno() == 2)
+    {
+        int tiro = this.partida.getAnfitrion().getCañas().tirarCania();
+        this.lc.setTirada(tiro);
+        this.lc.pintarTiro();
+        Ficha f = this.partida.getAnfitrion().getFichas().get(1);
+        f.setColor("green");
+        f = this.controlPartida.actualizarFicha(tiro, f);
+        this.partida.addFicha(f);
+        ArrayList<Ficha> fichas = this.partida.getAnfitrion().getFichas();
+        fichas.set(1, f);
+        this.partida.getAnfitrion().setFichas(fichas);
+        this.lf.setFichas(this.partida.getFichasJuego());
+        this.lf.actualizar();
+        this.controlPartida.cambiarTurno();
+    }
+    else{
+        JOptionPane.showMessageDialog(this, "Es turno del jugador: " + this.controlPartida.getTurno(),
+                "Error", JOptionPane.INFORMATION_MESSAGE);
+    }
+    }    
 /**
  * Método estatico encargado de cargar los multiples paneles que se utilizarán
  * para la graficación de los componentes.
@@ -216,14 +286,18 @@ public class FramePartida extends javax.swing.JFrame {
     private void cargarPaneles(){
         this.lc = new lienzoCanias();
         this.lt = new lienzoTablero(this.partida.getTablero());
+        this.lf = new LienzoFichas(this.partida.getFichasJuego());
         lc.setBounds(0, 10, 800,800);
         lt.setBounds(200, -50, 800, 800); 
+        lf.setBounds(200, -50, 800, 800);        
         lc.setOpaque(false);
         lt.setOpaque(false);
+        lf.setOpaque(false);
         JLayeredPane capas = new JLayeredPane();
         capas.setBounds(0, 0, 1300, 800);
-        capas.add(lt, 1);
-        capas.add(lc, 2);        
+        capas.add(lt,3);
+        capas.add(lc,2);
+        capas.add(lf,1);
         this.getContentPane().add(capas);        
     }
 

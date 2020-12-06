@@ -28,9 +28,9 @@ public class lienzoTablero extends JPanel {
  * del tablero.
 */    
     @Override
-    public void paint(Graphics g){   
-    super.paint(g);
-    Graphics2D g2d = (Graphics2D) g;
+    public void paintComponent(Graphics g){
+    super.paintComponents(g);
+    this.g2d = (Graphics2D) g;
     int x = 0;
     int y = 0;
     g2d.setColor(Color.BLACK);
@@ -259,7 +259,4 @@ public class lienzoTablero extends JPanel {
         g2d.drawLine(390, 70, 390, 710);        
     }    
     }
-/*
-    Método encargado de pintar las cañas según el parametro de entrada.
-*/    
- }
+}

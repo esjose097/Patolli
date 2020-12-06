@@ -19,6 +19,7 @@ public class Partida {
     private int numFichas;
     private ArrayList<Invitado> listaInvitado;
     private Anfitrion anfitrion;
+    private ArrayList<Ficha> fichasJuego;
 
     public Partida() {
     }    
@@ -33,6 +34,7 @@ public class Partida {
         this.numFichas = numFichas;
         this.listaInvitado = new ArrayList<>();
         this.anfitrion = anfitrion;
+        this.fichasJuego = new ArrayList<>();
     }
 
     public String getCodigo() {
@@ -105,7 +107,19 @@ public class Partida {
 
     public void setAnfitrion(Anfitrion anfitrion) {
         this.anfitrion = anfitrion;
-    }            
+    }
+    
+    public void addFicha(Ficha f){
+        this.fichasJuego.add(f);
+    }
+
+    public ArrayList<Ficha> getFichasJuego() {
+        return fichasJuego;
+    }
+
+    public void setFichasJuego(ArrayList<Ficha> fichasJuego) {
+        this.fichasJuego = fichasJuego;
+    }        
     
     private boolean iniciarPartida(){
         return true;
