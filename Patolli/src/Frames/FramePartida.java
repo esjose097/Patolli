@@ -287,17 +287,17 @@ public class FramePartida extends javax.swing.JFrame {
         this.lc = new lienzoCanias();
         this.lt = new lienzoTablero(this.partida.getTablero());
         this.lf = new LienzoFichas(this.partida.getFichasJuego());
-        lc.setBounds(0, 10, 800,800);
         lt.setBounds(200, -50, 800, 800); 
+        lc.setBounds(0, 10, 800,800);
         lf.setBounds(200, -50, 800, 800);        
         lc.setOpaque(false);
         lt.setOpaque(false);
         lf.setOpaque(false);
         JLayeredPane capas = new JLayeredPane();
         capas.setBounds(0, 0, 1300, 800);
-        capas.add(lt,3);
+        capas.add(lt,1);
         capas.add(lc,2);
-        capas.add(lf,1);
+        capas.add(lf,3);
         this.getContentPane().add(capas);        
     }
 

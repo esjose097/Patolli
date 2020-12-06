@@ -222,50 +222,50 @@ public class frmPrueba extends javax.swing.JFrame {
 //        g.drawLine(390, 150, 390, 630);   
 
 //Tablero de 12 casillas.
-//        int x = 0;
-//        int y = 0;
-//        x = 110; y = 350;
-//        g.drawRect(x, y, 560, 80);
-//        for(int i = 0; i < 14; i++)
-//        {
-//            g.drawLine(x, y, x, y+80);
-//            if(i == 5)
-//            {
-//                g.setColor(Color.red);
-//                g.fillRect(x, y+40, 40, 40);
-//                g.setColor(Color.BLACK);
-//            }
-//            else if(i == 8)
-//            {
-//                g.setColor(Color.red);
-//                g.fillRect(x, y, 40, 40);
-//                g.setColor(Color.BLACK);                
-//            }                        
-//            x = x + 40;
-//        }
-//        g.drawLine(110, 390, 670, 390);
-//        
-//        x = 350;
-//        y = 110;
-//        g.drawRect(x, y, 80, 560);
-//        for(int i = 0; i < 14; i++)
-//        {            
-//            g.drawLine(x, y, x+80, y);
-//            if(i == 5)
-//            {
-//                g.setColor(Color.red);
-//                g.fillRect(x, y, 40, 40);
-//                g.setColor(Color.BLACK);
-//            }
-//            if(i == 8)
-//            {
-//                g.setColor(Color.red);
-//                g.fillRect(x+40, y, 40, 40);
-//                g.setColor(Color.BLACK);
-//            }                                    
-//            y = y + 40;
-//        }
-//        g.drawLine(390, 110, 390, 670);
+        int x = 0;
+        int y = 0;
+        x = 110; y = 350;
+        g.drawRect(x, y, 560, 80);
+        for(int i = 0; i < 14; i++)
+        {
+            g.drawLine(x, y, x, y+80);
+            if(i == 5)
+            {
+                g.setColor(Color.red);
+                g.fillRect(x, y+40, 40, 40);
+                g.setColor(Color.BLACK);
+            }
+            else if(i == 8)
+            {
+                g.setColor(Color.red);
+                g.fillRect(x, y, 40, 40);
+                g.setColor(Color.BLACK);                
+            }                        
+            x = x + 40;
+        }
+        g.drawLine(110, 390, 670, 390);
+        
+        x = 350;
+        y = 110;
+        g.drawRect(x, y, 80, 560);
+        for(int i = 0; i < 14; i++)
+        {            
+            g.drawLine(x, y, x+80, y);
+            if(i == 5)
+            {
+                g.setColor(Color.red);
+                g.fillRect(x, y, 40, 40);
+                g.setColor(Color.BLACK);
+            }
+            if(i == 8)
+            {
+                g.setColor(Color.red);
+                g.fillRect(x+40, y, 40, 40);
+                g.setColor(Color.BLACK);
+            }                                    
+            y = y + 40;
+        }
+        g.drawLine(390, 110, 390, 670);
 
 //      Tablero de 14 casillas
 //        int x = 0;
@@ -313,97 +313,97 @@ public class frmPrueba extends javax.swing.JFrame {
 //        }
 //        g.drawLine(390, 70, 390, 710);        
 //        g.drawRect(0, 0, 40, 40);
-        int x = 0;
-        int y = 0;
-        x = 190; y = 350;
-        g.drawRect(x, y, 400, 80);
-        for(int i = 0; i < 11; i++)
-        {
-            g.drawLine(x, y, x, y+80);
-            if(i == 3)
-            {
-                g.setColor(Color.red);
-                g.fillRect(x, y+40, 40, 40);
-                g.setColor(Color.BLACK);
-            }
-            else if(i == 6)
-            {
-                g.setColor(Color.red);
-                g.fillRect(x, y, 40, 40);
-                g.setColor(Color.BLACK);                
-            }
-            x = x + 40;
-        }
-        g.drawLine(190, 390, 590, 390);
-        
-        x = 350;
-        y = 190;
-        g.drawRect(x, y, 80, 400);
-        for(int i = 0; i < 11; i++)
-        {            
-            g.drawLine(x, y, x+80, y);
-            if(i == 3)
-            {
-                g.setColor(Color.red);
-                g.fillRect(x, y, 40, 40);
-                g.setColor(Color.BLACK);
-            }
-            if(i == 6)
-            {
-                g.setColor(Color.red);
-                g.fillRect(x+40, y, 40, 40);
-                g.setColor(Color.BLACK);
-            }            
-            y = y + 40;
-        }
-        g.drawLine(390, 190, 390, 590);    
-
-        //Pintada de las cañas       
-         y = 250;
-         x = 15;
-        g.setColor(Color.green);
-        for(int i = 0; i < 6; i++)
-        {
-            g.drawRect(x, y, 40, 40);
-            y += 45;
-        }                
-        g.setColor(Color.black);
-        x = 25;
-        y = 260;
-        for(int i = 0; i < this.tirada; i++)
-        {
-            g.fillOval(x, y, 21, 21);
-            y += 45;
-        }
-        int auxX = this.x;
-        int auxY = this.y;
-        for(int i = 0; i < this.tirada; i++)
-        {
-            if(auxX == 320 && this.tirada >= 1)
-            {
-                auxX += 40;
-            }
-            else if(auxX >= 360 && auxY <560)
-            {
-                auxY += 40;
-            }
-            else if(auxX == 360 && this.tirada >= 1)
-            {
-                auxX += 40;
-            }
-            else if(auxX == 400 && auxY >= 400)
-            {
-                auxY-=40;
-            }
-            else if(auxX >= 400 && auxY == 400)
-            {
-                auxX += 40;
-            }
-        }
-        this.x = auxX;
-        this.y = auxY;
+//        int x = 0;
+//        int y = 0;
+//        x = 190; y = 350;
+//        g.drawRect(x, y, 400, 80);
+//        for(int i = 0; i < 11; i++)
+//        {
+//            g.drawLine(x, y, x, y+80);
+//            if(i == 3)
+//            {
+//                g.setColor(Color.red);
+//                g.fillRect(x, y+40, 40, 40);
+//                g.setColor(Color.BLACK);
+//            }
+//            else if(i == 6)
+//            {
+//                g.setColor(Color.red);
+//                g.fillRect(x, y, 40, 40);
+//                g.setColor(Color.BLACK);                
+//            }
+//            x = x + 40;
+//        }
+//        g.drawLine(190, 390, 590, 390);
+//        
+//        x = 350;
+//        y = 190;
+//        g.drawRect(x, y, 80, 400);
+//        for(int i = 0; i < 11; i++)
+//        {            
+//            g.drawLine(x, y, x+80, y);
+//            if(i == 3)
+//            {
+//                g.setColor(Color.red);
+//                g.fillRect(x, y, 40, 40);
+//                g.setColor(Color.BLACK);
+//            }
+//            if(i == 6)
+//            {
+//                g.setColor(Color.red);
+//                g.fillRect(x+40, y, 40, 40);
+//                g.setColor(Color.BLACK);
+//            }            
+//            y = y + 40;
+//        }
+//        g.drawLine(390, 190, 390, 590);    
+//
+//        //Pintada de las cañas       
+//         y = 250;
+//         x = 15;
+//        g.setColor(Color.green);
+//        for(int i = 0; i < 6; i++)
+//        {
+//            g.drawRect(x, y, 40, 40);
+//            y += 45;
+//        }                
+//        g.setColor(Color.black);
+//        x = 25;
+//        y = 260;
+//        for(int i = 0; i < this.tirada; i++)
+//        {
+//            g.fillOval(x, y, 21, 21);
+//            y += 45;
+//        }
+//        int auxX = this.x;
+//        int auxY = this.y;
+//        for(int i = 0; i < this.tirada; i++)
+//        {
+//            if(auxX == 320 && this.tirada >= 1)
+//            {
+//                auxX += 40;
+//            }
+//            else if(auxX >= 360 && auxY <560)
+//            {
+//                auxY += 40;
+//            }
+//            else if(auxX == 360 && this.tirada >= 1)
+//            {
+//                auxX += 40;
+//            }
+//            else if(auxX == 400 && auxY >= 400)
+//            {
+//                auxY-=40;
+//            }
+//            else if(auxX >= 400 && auxY == 400)
+//            {
+//                auxX += 40;
+//            }
+//        }
+//        this.x = auxX;
+  //      this.y = auxY;
         g.setColor(Color.BLACK);
-        g.fillOval(400, 200, 20, 20);
+        g.fillOval(360, 360, 20, 20);
         System.out.println("Cordenadas de X: " + this.x);
         System.out.println("Cordenadas de Y: " + this.y);
 
